@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///home/kyawzinwinhtike/Desktop/battery_shop_ui/app/dashboard/layout.tsx"],"sourcesContent":["import React from \"react\";\n\nconst DashboardLayout = ({ children }: { children: React.ReactNode }) => {\n  return (\n    <div className=\"flex min-h-screen bg-gray-400\">\n      <main className=\"flex-1 p-6\">{children}</main>\n    </div>\n  );\n};\n\nexport default DashboardLayout;\n"],"names":[],"mappings":";;;;;;AAEA,MAAM,kBAAkB,CAAC,EAAE,QAAQ,EAAiC;IAClE,qBACE,8OAAC;QAAI,WAAU;kBACb,cAAA,8OAAC;YAAK,WAAU;sBAAc;;;;;;;;;;;AAGpC;uCAEe","debugId":null}}]
+}

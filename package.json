@@ -11,6 +11,10 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.9.0",
     "axios": "^1.12.2",
+    "flowbite": "^4.0.0",
+    "flowbite-react": "^0.12.10",
+    "ldrs": "^1.1.9",
+    "lucide-react": "^0.553.0",
     "next": "15.5.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",

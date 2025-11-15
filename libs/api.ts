@@ -1,10 +1,16 @@
-import { AuthResponse, SendOtpResponse } from "@/types/auth";
+import {
+  AuthResponse,
+  CreateSupplier,
+  SendOtpResponse,
+  Supplier,
+} from "@/types/auth";
 import axios from "axios";
 import { handleApiError } from "./apiErrorHandler";
 
 //create axios instance
 const api = axios.create({
   baseURL: "http://localhost:5000/api/v1",
+  withCredentials: true,
   headers: {
     "Content-Type": "application/json",
   },
@@ -70,6 +76,54 @@ export const ResendOtp = async (userId: string): Promise<AuthResponse> => {
   try {
     const res = await api.post("/auth/register/resend-otp", {
       userId,
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+//get all suppliers
+export const GetAllSuppliers = async (token: string) => {
+  try {
+    const res = await api.get("/supplier", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+//create supplier
+export const CreateNewSupplier = async (
+  data: CreateSupplier,
+  token: string
+) => {
+  try {
+    const res = await api.post("/supplier/create", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+//delete Supplier
+export const DeleteSupplier = async (id: string, token: string) => {
+  try {
+    const res = await api.delete(`/supplier/delete/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
     return res.data;
   } catch (error: unknown) {

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 19, "column": 0}, "map": {"version":3,"sources":["file:///home/kyawzinwinhtike/Desktop/battery_shop_ui/app/dashboard/customer/page.tsx"],"sourcesContent":["import React from \"react\";\n\nconst CustomerPage = () => {\n  return <div>CustomerPage</div>;\n};\n\nexport default CustomerPage;\n"],"names":[],"mappings":";;;;;;AAEA,MAAM,eAAe;IACnB,qBAAO,8OAAC;kBAAI;;;;;;AACd;uCAEe","debugId":null}}]
+}

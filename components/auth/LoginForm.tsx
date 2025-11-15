@@ -1,11 +1,13 @@
 "use client";
 import { LoginUser } from "@/libs/api";
-import { AuthResponse } from "@/types/auth";
+import { AuthResponse, LoginResult } from "@/types/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/store/slices/userSlice";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -14,6 +16,8 @@ const LoginForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
+  const dispatch = useDispatch();
+
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -21,6 +25,9 @@ const LoginForm = () => {
     try {
       const res: AuthResponse = await LoginUser(email, password);
       if (res.con) {
+        const user: LoginResult = res.result;
+        localStorage.setItem("token", user.token);
+        dispatch(setUser(user));
         toast.success(res.message);
         router.push("/dashboard");
       } else {

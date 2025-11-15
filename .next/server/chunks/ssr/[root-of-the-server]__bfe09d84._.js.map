@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 19, "column": 0}, "map": {"version":3,"sources":["file:///home/kyawzinwinhtike/Desktop/battery_shop_ui/app/dashboard/sale/page.tsx"],"sourcesContent":["import React from \"react\";\n\nconst SalePage = () => {\n  return <div className=\" bg-blue-200\">Sale page.</div>;\n};\n\nexport default SalePage;\n"],"names":[],"mappings":";;;;;;AAEA,MAAM,WAAW;IACf,qBAAO,8OAAC;QAAI,WAAU;kBAAe;;;;;;AACvC;uCAEe","debugId":null}}]
+}
