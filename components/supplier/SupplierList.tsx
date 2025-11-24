@@ -41,6 +41,14 @@ const SupplierList = () => {
     setSuppliers((prev) => prev.filter((s) => s._id !== id));
   };
 
+  const handleUpdateSuccess = (updatedSupplier: Supplier) => {
+    setSuppliers((prev) =>
+      prev.map((item) =>
+        item._id === updatedSupplier._id ? updatedSupplier : item
+      )
+    );
+  };
+
   return (
     <div className="p-4">
       {/* upper divison */}
@@ -86,7 +94,7 @@ const SupplierList = () => {
               <th scope="col" className="px-6 py-3 font-medium">
                 Phone
               </th>
-              <th scope="col" className="px-6 py-3 font-medium text-right">
+              <th scope="col" className="px-6 py-3 font-medium">
                 Edit
               </th>
             </tr>
@@ -104,6 +112,7 @@ const SupplierList = () => {
                     supplier={supplier}
                     index={index + 1}
                     onDeleteSuccess={handleDeleteSuccess}
+                    onUpdateSuccess={handleUpdateSuccess}
                   />
                 );
               })

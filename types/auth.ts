@@ -1,3 +1,13 @@
+export const batteryTypes = [
+  "Liquid",
+  "Maintenance Free",
+  "Tubular",
+  "LiFePO4",
+  "AGM",
+  "Gel",
+  "Other",
+];
+
 export interface LoginResult {
   _id: string;
   name: string;
@@ -19,8 +29,7 @@ export interface SendOtpResponse {
   userId: string;
 }
 
-export interface CreateSupplier {
-  _id: string;
+export interface CreateSupplierType {
   companyName: string;
   contact: string;
   address: string;
@@ -33,4 +42,43 @@ export interface Supplier {
   contact: string;
   address: string;
   phone: string;
+}
+
+export interface Category {
+  _id: string;
+  type: string;
+}
+
+export interface Product {
+  _id: string;
+  name: string;
+  type: string;
+  brand: string;
+  capacity: string;
+  category: Category;
+  supplier: Supplier;
+  price: number;
+  warrantyMonths: number;
+  quantity: number;
+}
+
+export interface ProductResponse {
+  con: boolean;
+  message: string;
+  currentPage: number;
+  totalPages: number;
+  totalCount: number;
+  result: Product[];
+}
+
+export interface CreateProductType {
+  name: string;
+  type: string;
+  brand: string;
+  capacity: string;
+  category: "";
+  supplier: "";
+  price: number;
+  warrantyMonths: number;
+  quantity: number;
 }

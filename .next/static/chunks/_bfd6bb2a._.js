@@ -77,7 +77,7 @@ const SideBar = ()=>{
                 className: "flex-1 px-4 py-6 space-y-2",
                 children: navItems.map((param)=>{
                     let { name, href, icon: Icon } = param;
-                    const isActive = pathname === href;
+                    const isActive = pathname === href || href !== "/dashboard" && pathname.startsWith(href + "/");
                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                         href: href,
                         className: "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ".concat(isActive ? "bg-white text-blue-700 shadow-md" : "hover:bg-blue-500/20"),
@@ -86,7 +86,7 @@ const SideBar = ()=>{
                                 className: "w-5 h-5 ".concat(isActive ? "text-blue-700" : "text-white")
                             }, void 0, false, {
                                 fileName: "[project]/components/dashboard/SideBar.tsx",
-                                lineNumber: 45,
+                                lineNumber: 47,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -94,13 +94,13 @@ const SideBar = ()=>{
                                 children: name
                             }, void 0, false, {
                                 fileName: "[project]/components/dashboard/SideBar.tsx",
-                                lineNumber: 50,
+                                lineNumber: 52,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, href, true, {
                         fileName: "[project]/components/dashboard/SideBar.tsx",
-                        lineNumber: 36,
+                        lineNumber: 38,
                         columnNumber: 13
                     }, ("TURBOPACK compile-time value", void 0));
                 })
@@ -114,7 +114,7 @@ const SideBar = ()=>{
                 children: "v1.0.0"
             }, void 0, false, {
                 fileName: "[project]/components/dashboard/SideBar.tsx",
-                lineNumber: 62,
+                lineNumber: 64,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]

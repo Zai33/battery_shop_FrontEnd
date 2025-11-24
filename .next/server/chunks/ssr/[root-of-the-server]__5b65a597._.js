@@ -101,6 +101,12 @@ const handleApiError = (error)=>{
 "use strict";
 
 __turbopack_context__.s([
+    "CreateNewSupplier",
+    ()=>CreateNewSupplier,
+    "DeleteSupplier",
+    ()=>DeleteSupplier,
+    "GetAllSuppliers",
+    ()=>GetAllSuppliers,
     "LoginUser",
     ()=>LoginUser,
     "ResendOtp",
@@ -117,6 +123,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$t
 //create axios instance
 const api = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].create({
     baseURL: "http://localhost:5000/api/v1",
+    withCredentials: true,
     headers: {
         "Content-Type": "application/json"
     }
@@ -163,6 +170,45 @@ const ResendOtp = async (userId)=>{
     try {
         const res = await api.post("/auth/register/resend-otp", {
             userId
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const GetAllSuppliers = async (token)=>{
+    try {
+        const res = await api.get("/supplier", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const CreateNewSupplier = async (data, token)=>{
+    try {
+        const res = await api.post("/supplier/create", data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const DeleteSupplier = async (id, token)=>{
+    try {
+        const res = await api.delete(`/supplier/delete/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         });
         return res.data;
     } catch (error) {

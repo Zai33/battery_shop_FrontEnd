@@ -31,7 +31,9 @@ const SideBar = () => {
 
       <nav className="flex-1 px-4 py-6 space-y-2">
         {navItems.map(({ name, href, icon: Icon }) => {
-          const isActive = pathname === href;
+          const isActive =
+            pathname === href ||
+            (href !== "/dashboard" && pathname.startsWith(href + "/"));
           return (
             <Link
               key={href}

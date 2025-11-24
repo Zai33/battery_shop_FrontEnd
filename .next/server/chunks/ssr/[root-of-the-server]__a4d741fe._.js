@@ -101,18 +101,28 @@ const handleApiError = (error)=>{
 "use strict";
 
 __turbopack_context__.s([
+    "CreateNewProduct",
+    ()=>CreateNewProduct,
     "CreateNewSupplier",
     ()=>CreateNewSupplier,
     "DeleteSupplier",
     ()=>DeleteSupplier,
+    "GetAllCategories",
+    ()=>GetAllCategories,
+    "GetAllProducts",
+    ()=>GetAllProducts,
     "GetAllSuppliers",
     ()=>GetAllSuppliers,
+    "GetProductById",
+    ()=>GetProductById,
     "LoginUser",
     ()=>LoginUser,
     "ResendOtp",
     ()=>ResendOtp,
     "SignUpUser",
     ()=>SignUpUser,
+    "UpdateSupplier",
+    ()=>UpdateSupplier,
     "VerifyOtp",
     ()=>VerifyOtp
 ]);
@@ -177,6 +187,19 @@ const ResendOtp = async (userId)=>{
         throw error;
     }
 };
+const GetAllCategories = async (token)=>{
+    try {
+        const res = await api.get("/category", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
 const GetAllSuppliers = async (token)=>{
     try {
         const res = await api.get("/supplier", {
@@ -203,7 +226,71 @@ const CreateNewSupplier = async (data, token)=>{
         throw error;
     }
 };
-const DeleteSupplier = async();
+const DeleteSupplier = async (id, token)=>{
+    try {
+        const res = await api.delete(`/supplier/delete/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const UpdateSupplier = async (id, data, token)=>{
+    try {
+        const res = await api.put(`/supplier/update/${id}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const GetAllProducts = async (token)=>{
+    try {
+        const res = await api.get("/product", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const CreateNewProduct = async (data, token)=>{
+    try {
+        const res = await api.post("/product/create", data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const GetProductById = async (id, token)=>{
+    try {
+        const res = await api.get(`/product/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
 }),
 "[externals]/next/dist/server/app-render/action-async-storage.external.js [external] (next/dist/server/app-render/action-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {
 

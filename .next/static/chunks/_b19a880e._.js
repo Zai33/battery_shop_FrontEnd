@@ -27,6 +27,12 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 "use strict";
 
 __turbopack_context__.s([
+    "CreateNewSupplier",
+    ()=>CreateNewSupplier,
+    "DeleteSupplier",
+    ()=>DeleteSupplier,
+    "GetAllSuppliers",
+    ()=>GetAllSuppliers,
     "LoginUser",
     ()=>LoginUser,
     "ResendOtp",
@@ -43,6 +49,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$t
 //create axios instance
 const api = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].create({
     baseURL: "http://localhost:5000/api/v1",
+    withCredentials: true,
     headers: {
         "Content-Type": "application/json"
     }
@@ -100,11 +107,56 @@ const ResendOtp = async (userId)=>{
     }
 };
 _c3 = ResendOtp;
-var _c, _c1, _c2, _c3;
+const GetAllSuppliers = async (token)=>{
+    try {
+        const res = await api.get("/supplier", {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c4 = GetAllSuppliers;
+const CreateNewSupplier = async (data, token)=>{
+    try {
+        const res = await api.post("/supplier/create", data, {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c5 = CreateNewSupplier;
+const DeleteSupplier = async (id, token)=>{
+    try {
+        const res = await api.delete("/supplier/delete/".concat(id), {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c6 = DeleteSupplier;
+var _c, _c1, _c2, _c3, _c4, _c5, _c6;
 __turbopack_context__.k.register(_c, "LoginUser");
 __turbopack_context__.k.register(_c1, "SignUpUser");
 __turbopack_context__.k.register(_c2, "VerifyOtp");
 __turbopack_context__.k.register(_c3, "ResendOtp");
+__turbopack_context__.k.register(_c4, "GetAllSuppliers");
+__turbopack_context__.k.register(_c5, "CreateNewSupplier");
+__turbopack_context__.k.register(_c6, "DeleteSupplier");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
