@@ -1,8 +1,11 @@
 {
+  "/dashboard/customer/page": "app/dashboard/customer/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/dashboard/product/[id]/page": "app/dashboard/product/[id]/page.js",
   "/dashboard/product/create/page": "app/dashboard/product/create/page.js",
   "/dashboard/product/page": "app/dashboard/product/page.js",
+  "/dashboard/sale/page": "app/dashboard/sale/page.js",
+  "/dashboard/secondProduct/page": "app/dashboard/secondProduct/page.js",
   "/dashboard/suppliers/page": "app/dashboard/suppliers/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/login/page": "app/login/page.js",

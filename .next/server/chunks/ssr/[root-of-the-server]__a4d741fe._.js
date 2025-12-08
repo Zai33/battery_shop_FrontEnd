@@ -105,6 +105,8 @@ __turbopack_context__.s([
     ()=>CreateNewProduct,
     "CreateNewSupplier",
     ()=>CreateNewSupplier,
+    "DeleteProductById",
+    ()=>DeleteProductById,
     "DeleteSupplier",
     ()=>DeleteSupplier,
     "GetAllCategories",
@@ -121,6 +123,8 @@ __turbopack_context__.s([
     ()=>ResendOtp,
     "SignUpUser",
     ()=>SignUpUser,
+    "UpdateProductById",
+    ()=>UpdateProductById,
     "UpdateSupplier",
     ()=>UpdateSupplier,
     "VerifyOtp",
@@ -281,6 +285,32 @@ const CreateNewProduct = async (data, token)=>{
 const GetProductById = async (id, token)=>{
     try {
         const res = await api.get(`/product/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const UpdateProductById = async (id, data, token)=>{
+    try {
+        const res = await api.patch(`/product/update/${id}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const DeleteProductById = async (id, token)=>{
+    try {
+        const res = await api.delete(`/product/delete/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

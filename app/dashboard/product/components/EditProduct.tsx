@@ -1,27 +1,38 @@
 "use client";
 
 import Breadcrumb from "@/components/breadcrumb/BreadCrumb";
-import { GetAllCategories, GetAllSuppliers, GetProductById } from "@/libs/api";
-import { batteryTypes, Category, Supplier } from "@/types/auth";
+import {
+  GetAllCategories,
+  GetAllSuppliers,
+  GetProductById,
+  UpdateProductById,
+} from "@/libs/api";
+import {
+  batteryTypes,
+  Category,
+  CreateProductType,
+  Supplier,
+} from "@/types/auth";
 import { Package, Save, X } from "lucide-react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const EditProduct = () => {
   const { id } = useParams();
+  const router = useRouter();
   const [categories, setCategories] = useState<Category[]>([]);
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<CreateProductType>({
     name: "",
     type: "",
     category: "",
     supplier: "",
     brand: "",
     capacity: "",
-    price: "",
-    warrantyMonths: "",
-    quantity: "",
+    price: 0,
+    warrantyMonths: 0,
+    quantity: 0,
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -88,6 +99,49 @@ const EditProduct = () => {
     }
   };
 
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    if (["price", "warrantyMonths", "quantity"].includes(name)) {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value === "" ? "" : Number(value),
+      }));
+      return;
+    }
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await UpdateProductById(id as string, formData, token);
+      if (res.con) {
+        toast.success("Product updated successfully");
+      } else {
+        toast.error(res.message);
+      }
+      setTimeout(() => {
+        router.push("/dashboard/product");
+      }, 1000);
+      setLoading(false);
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Failed to create new product. Please try again.";
+      toast.error(message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-6">
       <div className="w-full">
@@ -110,7 +164,10 @@ const EditProduct = () => {
 
         {/* Form Section */}
         {isLoading ? (
-          <div>Loading...</div>
+          <div className="flex flex-col items-center justify-center h-[300px] gap-4">
+            <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+            <p className="text-gray-600 font-medium">Loading product data...</p>
+          </div>
         ) : (
           <div className="flex justify-center items-center mt-6">
             <form className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden w-full max-w-5xl">
@@ -135,7 +192,7 @@ const EditProduct = () => {
                         placeholder="e.g. PowerMax 2000 Solar Battery"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                         value={formData.name}
-                        // onChange={handleChange}
+                        onChange={handleChange}
                       />
                     </div>
 
@@ -154,7 +211,7 @@ const EditProduct = () => {
                         placeholder="e.g. Duracell, Exide"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                         value={formData.brand}
-                        // onChange={handleChange}
+                        onChange={handleChange}
                       />
                     </div>
                     <div>
@@ -172,7 +229,7 @@ const EditProduct = () => {
                         placeholder="e.g. 12V 100Ah"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                         value={formData.capacity}
-                        // onChange={handleChange}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -195,7 +252,7 @@ const EditProduct = () => {
                         required
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none bg-white transition"
                         value={formData.type}
-                        // onChange={handleChange}
+                        onChange={handleChange}
                       >
                         <option value="">Select Type</option>
                         {batteryTypes.map((type) => (
@@ -219,7 +276,7 @@ const EditProduct = () => {
                         required
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none bg-white transition"
                         value={formData.category}
-                        // onChange={handleChange}
+                        onChange={handleChange}
                       >
                         <option value="">Select Category</option>
                         {categories.map((cat) => (
@@ -244,7 +301,7 @@ const EditProduct = () => {
                           required
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none bg-white transition"
                           value={formData.supplier}
-                          // onChange={handleChange}
+                          onChange={handleChange}
                         >
                           <option value="">Select Supplier</option>
                           {suppliers.map((sup) => (
@@ -279,7 +336,7 @@ const EditProduct = () => {
                         placeholder="0.00"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                         value={formData.price}
-                        // onChange={handleChange}
+                        onChange={handleChange}
                       />
                     </div>
 
@@ -298,7 +355,7 @@ const EditProduct = () => {
                         placeholder="0"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                         value={formData.quantity}
-                        // onChange={handleChange}
+                        onChange={handleChange}
                       />
                     </div>
 
@@ -318,7 +375,7 @@ const EditProduct = () => {
                         placeholder="e.g. 12"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                         value={formData.warrantyMonths}
-                        // onChange={handleChange}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -340,7 +397,7 @@ const EditProduct = () => {
                   className={`flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-all ${
                     loading ? "opacity-70 cursor-not-allowed" : ""
                   }`}
-                  // onClick={handleSubmit}
+                  onClick={handleSubmit}
                 >
                   {loading ? (
                     <>
@@ -364,12 +421,12 @@ const EditProduct = () => {
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                         ></path>
                       </svg>
-                      Saving...
+                      Updating...
                     </>
                   ) : (
                     <>
                       <Save className="w-4 h-4" />
-                      Save Product
+                      Update Product
                     </>
                   )}
                 </button>

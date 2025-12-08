@@ -7,13 +7,19 @@ import {
   GetAllSuppliers,
 } from "@/libs/api";
 import CreateSupplier from "@/model/CreateSupplier";
-import { batteryTypes, Category, CreateProductType, Supplier } from "@/types/auth";
+import {
+  batteryTypes,
+  Category,
+  CreateProductType,
+  Supplier,
+} from "@/types/auth";
 import { Package, Save, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const CreateProduct = () => {
-
+  const router = useRouter();
   const [formData, setFormData] = useState<CreateProductType>({
     name: "",
     type: "",
@@ -96,6 +102,7 @@ const CreateProduct = () => {
           warrantyMonths: 0,
           quantity: 0,
         });
+        router.push("/dashboard/product");
       } else {
         toast.error(res.message);
       }

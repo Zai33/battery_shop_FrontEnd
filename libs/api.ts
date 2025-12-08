@@ -170,10 +170,11 @@ export const UpdateSupplier = async (
 
 // get all products
 export const GetAllProducts = async (
-  token: string
+  token: string,
+  page: number
 ): Promise<ProductResponse> => {
   try {
-    const res = await api.get("/product", {
+    const res = await api.get(`/product?page=${page}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -207,6 +208,40 @@ export const CreateNewProduct = async (
 export const GetProductById = async (id: string, token: string) => {
   try {
     const res = await api.get(`/product/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+//update product by id
+export const UpdateProductById = async (
+  id: string,
+  data: CreateProductType,
+  token: string
+) => {
+  try {
+    const res = await api.patch(`/product/update/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+//delete product by id
+export const DeleteProductById = async (id: string, token: string) => {
+  try {
+    const res = await api.delete(`/product/delete/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

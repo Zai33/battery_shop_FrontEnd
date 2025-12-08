@@ -76,8 +76,8 @@ export interface CreateProductType {
   type: string;
   brand: string;
   capacity: string;
-  category: "";
-  supplier: "";
+  category: string;
+  supplier: string;
   price: number;
   warrantyMonths: number;
   quantity: number;
