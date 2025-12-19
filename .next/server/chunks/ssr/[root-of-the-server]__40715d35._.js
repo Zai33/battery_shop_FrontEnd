@@ -113,6 +113,8 @@ __turbopack_context__.s([
     ()=>GetAllCategories,
     "GetAllProducts",
     ()=>GetAllProducts,
+    "GetAllSales",
+    ()=>GetAllSales,
     "GetAllSuppliers",
     ()=>GetAllSuppliers,
     "GetProductById",
@@ -121,6 +123,10 @@ __turbopack_context__.s([
     ()=>LoginUser,
     "ResendOtp",
     ()=>ResendOtp,
+    "SaleCreate",
+    ()=>SaleCreate,
+    "SearchProductByName",
+    ()=>SearchProductByName,
     "SignUpUser",
     ()=>SignUpUser,
     "UpdateProductById",
@@ -311,6 +317,45 @@ const UpdateProductById = async (id, data, token)=>{
 const DeleteProductById = async (id, token)=>{
     try {
         const res = await api.delete(`/product/delete/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const GetAllSales = async (token, page)=>{
+    try {
+        const res = await api.get(`/sale?page=${page}&limit=10`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const SaleCreate = async (token, data)=>{
+    try {
+        const res = await api.post(`/sale/create`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const SearchProductByName = async (token, keyword)=>{
+    try {
+        const res = await api.get(`/product/search?key=${keyword}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

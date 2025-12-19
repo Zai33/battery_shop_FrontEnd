@@ -2,10 +2,13 @@ import {
   AuthResponse,
   CreateProductType,
   CreateSupplierType,
+  Product,
   ProductResponse,
+  Sale,
+  SaleForm,
   SendOtpResponse,
   Supplier,
-} from "@/types/auth";
+} from "@/types/type";
 import axios from "axios";
 import { handleApiError } from "./apiErrorHandler";
 
@@ -242,6 +245,110 @@ export const UpdateProductById = async (
 export const DeleteProductById = async (id: string, token: string) => {
   try {
     const res = await api.delete(`/product/delete/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+//get all sales
+export const GetAllSales = async (token: string, page: number) => {
+  try {
+    const res = await api.get(`/sale?page=${page}&limit=10`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+//create sale
+export const SaleCreate = async (token: string, saleData: SaleForm) => {
+  try {
+    const res = await api.post(`/sale/create`, saleData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+//get all sale
+export const GetAllSale = async (token: string, page: number) => {
+  try {
+    const res = await api.get(`/sale?page=${page}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+//get sale by id
+export const GetSaleById = async (token: string, id: string) => {
+  try {
+    const res = await api.get(`/sale/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+//get all buybacks
+export const GetAllBuyBacks = async (token: string, page: number) => {
+  try {
+    const res = await api.get(`/buy-back?page=${page}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+//get buyback by id
+export const GetBuyBackById = async (token: string, id: string) => {
+  try {
+    const res = await api.get(`/buy-back/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+export const SearchProductByName = async (token: string, keyword: string) => {
+  try {
+    const res = await api.get(`/product/search?key=${keyword}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

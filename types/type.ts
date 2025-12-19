@@ -82,3 +82,68 @@ export interface CreateProductType {
   warrantyMonths: number;
   quantity: number;
 }
+
+export interface BuyBackItem {
+  batterySize: string;
+  condition: string;
+  quantity: number;
+  buyPrice: number;
+  inspectionNote: string;
+  reused: boolean;
+  total: number;
+}
+
+export interface Customer {
+  _id: string;
+  name: string;
+  phone: string;
+}
+
+export interface User {
+  _id: string;
+  name: string;
+  email: string;
+}
+
+export interface SaleForm {
+  customerInfo: { name: string; phone: string };
+  product: string;
+  batteryCategory: string;
+  quantity: number;
+  salePrice: number;
+  carNumber: string;
+  oldBatteryPrice: number;
+  totalPrice: number;
+  rebuyOldBattery: boolean;
+  paymentMethod: string;
+  paidAmount: number;
+  duePayment: number;
+  isPaid: boolean;
+  buybackData: BuyBackItem[];
+}
+
+interface buybackDetail {
+  batteries: BuyBackItem[];
+}
+
+export interface Sale {
+  _id: string;
+  customer: Customer;
+  carNumber: string;
+  product: Product;
+  batteryCategory: "new" | "second";
+  quantity: number;
+  salePrice: number;
+  oldBatteryPrice: number;
+  totalPrice: number;
+  rebuyOldBattery: boolean;
+  buyback: buybackDetail[];
+  warrantyExpiry: string;
+  createdBy: User;
+  invoiceNumber: string;
+  paymentMethod: "Cash" | "KBZ pay" | "Credit";
+  paidAmount: number;
+  duePayment: number;
+  isPaid: boolean;
+  saleDate: Date;
+}

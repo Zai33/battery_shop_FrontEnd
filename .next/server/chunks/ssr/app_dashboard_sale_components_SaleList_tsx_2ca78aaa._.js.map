@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///home/kyawzinwinhtike/Desktop/battery_shop_ui/app/dashboard/sale/components/SaleList.tsx"],"sourcesContent":["\"use client\";\n\nimport { useRouter } from \"next/navigation\";\nimport React, { useState } from \"react\";\n\nconst SaleList = () => {\n  const router = useRouter();\n  const [sales, setSales] = useState([]);\n  const [isLoading, set]\n\n  return <div>SaleList</div>;\n};\n\nexport default SaleList;\n"],"names":[],"mappings":";;;;;AAEA;AACA;AAHA;;;;AAKA,MAAM,WAAW;IACf,MAAM,SAAS,IAAA,+IAAS;IACxB,MAAM,CAAC,OAAO,SAAS,GAAG,IAAA,iNAAQ,EAAC,EAAE;IACrC,MAAM,CAAC,WAAW,IAAI;IAEtB,qBAAO,8OAAC;kBAAI;;;;;;AACd;uCAEe","debugId":null}}]
+}

@@ -39,6 +39,8 @@ __turbopack_context__.s([
     ()=>GetAllCategories,
     "GetAllProducts",
     ()=>GetAllProducts,
+    "GetAllSales",
+    ()=>GetAllSales,
     "GetAllSuppliers",
     ()=>GetAllSuppliers,
     "GetProductById",
@@ -47,6 +49,10 @@ __turbopack_context__.s([
     ()=>LoginUser,
     "ResendOtp",
     ()=>ResendOtp,
+    "SaleCreate",
+    ()=>SaleCreate,
+    "SearchProductByName",
+    ()=>SearchProductByName,
     "SignUpUser",
     ()=>SignUpUser,
     "UpdateProductById",
@@ -261,7 +267,49 @@ const DeleteProductById = async (id, token)=>{
     }
 };
 _c13 = DeleteProductById;
-var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12, _c13;
+const GetAllSales = async (token, page)=>{
+    try {
+        const res = await api.get("/sale?page=".concat(page, "&limit=10"), {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c14 = GetAllSales;
+const SaleCreate = async (token, data)=>{
+    try {
+        const res = await api.post("/sale/create", data, {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c15 = SaleCreate;
+const SearchProductByName = async (token, keyword)=>{
+    try {
+        const res = await api.get("/product/search?key=".concat(keyword), {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c16 = SearchProductByName;
+var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12, _c13, _c14, _c15, _c16;
 __turbopack_context__.k.register(_c, "LoginUser");
 __turbopack_context__.k.register(_c1, "SignUpUser");
 __turbopack_context__.k.register(_c2, "VerifyOtp");
@@ -276,6 +324,9 @@ __turbopack_context__.k.register(_c10, "CreateNewProduct");
 __turbopack_context__.k.register(_c11, "GetProductById");
 __turbopack_context__.k.register(_c12, "UpdateProductById");
 __turbopack_context__.k.register(_c13, "DeleteProductById");
+__turbopack_context__.k.register(_c14, "GetAllSales");
+__turbopack_context__.k.register(_c15, "SaleCreate");
+__turbopack_context__.k.register(_c16, "SearchProductByName");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }

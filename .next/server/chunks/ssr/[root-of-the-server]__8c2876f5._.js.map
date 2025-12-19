@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 19, "column": 0}, "map": {"version":3,"sources":["file:///home/kyawzinwinhtike/Desktop/battery_shop_ui/app/dashboard/sale/components/SaleList.tsx"],"sourcesContent":["import React from \"react\";\n\nconst SaleList = () => {\n\n    const []\n  return <div>SaleList</div>;\n};\n\nexport default SaleList;\n"],"names":[],"mappings":";;;;;;AAEA,MAAM,WAAW;IAEb,MAAM,EAAE;IACV,qBAAO,8OAAC;kBAAI;;;;;;AACd;uCAEe","debugId":null}},
+    {"offset": {"line": 40, "column": 0}, "map": {"version":3,"sources":["file:///home/kyawzinwinhtike/Desktop/battery_shop_ui/app/dashboard/sale/page.tsx"],"sourcesContent":["import React from \"react\";\nimport SaleList from \"./components/SaleList\";\n\nconst SalePage = () => {\n  return (\n    <div className=\"w-full h-full\">\n      <SaleList />\n    </div>\n  );\n};\n\nexport default SalePage;\n"],"names":[],"mappings":";;;;;AACA;;;AAEA,MAAM,WAAW;IACf,qBACE,8OAAC;QAAI,WAAU;kBACb,cAAA,8OAAC,8JAAQ;;;;;;;;;;AAGf;uCAEe","debugId":null}}]
+}

@@ -1,5 +1,5 @@
 import { DeleteProductById } from "@/libs/api";
-import { Product } from "@/types/auth";
+import { Product } from "@/types/type";
 import { dotSpinner } from "ldrs";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";

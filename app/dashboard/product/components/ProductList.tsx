@@ -7,7 +7,7 @@ import ProductListEmpty from "./ProductListEmpty";
 import { useEffect, useState } from "react";
 import { GetAllProducts } from "@/libs/api";
 import toast from "react-hot-toast";
-import { Product, ProductResponse } from "@/types/auth";
+import { Product, ProductResponse } from "@/types/type";
 import { useRouter } from "next/navigation";
 import ProductRow from "./ProductRow";
 

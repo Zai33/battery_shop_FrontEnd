@@ -1,4 +1,4 @@
-import { LoginResult } from "@/types/auth";
+import { LoginResult } from "@/types/type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: LoginResult = {

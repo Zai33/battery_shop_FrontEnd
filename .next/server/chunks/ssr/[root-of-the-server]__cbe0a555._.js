@@ -164,6 +164,8 @@ __turbopack_context__.s([
     ()=>CreateNewProduct,
     "CreateNewSupplier",
     ()=>CreateNewSupplier,
+    "DeleteProductById",
+    ()=>DeleteProductById,
     "DeleteSupplier",
     ()=>DeleteSupplier,
     "GetAllCategories",
@@ -172,12 +174,16 @@ __turbopack_context__.s([
     ()=>GetAllProducts,
     "GetAllSuppliers",
     ()=>GetAllSuppliers,
+    "GetProductById",
+    ()=>GetProductById,
     "LoginUser",
     ()=>LoginUser,
     "ResendOtp",
     ()=>ResendOtp,
     "SignUpUser",
     ()=>SignUpUser,
+    "UpdateProductById",
+    ()=>UpdateProductById,
     "UpdateSupplier",
     ()=>UpdateSupplier,
     "VerifyOtp",
@@ -309,9 +315,9 @@ const UpdateSupplier = async (id, data, token)=>{
         throw error;
     }
 };
-const GetAllProducts = async (token)=>{
+const GetAllProducts = async (token, page)=>{
     try {
-        const res = await api.get("/product", {
+        const res = await api.get(`/product?page=${page}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -325,6 +331,45 @@ const GetAllProducts = async (token)=>{
 const CreateNewProduct = async (data, token)=>{
     try {
         const res = await api.post("/product/create", data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const GetProductById = async (id, token)=>{
+    try {
+        const res = await api.get(`/product/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const UpdateProductById = async (id, data, token)=>{
+    try {
+        const res = await api.patch(`/product/update/${id}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const DeleteProductById = async (id, token)=>{
+    try {
+        const res = await api.delete(`/product/delete/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -584,9 +629,15 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$breadcrumb$2f$BreadCrumb$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/breadcrumb/BreadCrumb.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/libs/api.ts [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$model$2f$CreateSupplier$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/model/CreateSupplier.tsx [app-ssr] (ecmascript)");
+(()=>{
+    const e = new Error("Cannot find module '@/types/auth'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/package.js [app-ssr] (ecmascript) <export default as Package>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$save$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Save$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/save.js [app-ssr] (ecmascript) <export default as Save>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/x.js [app-ssr] (ecmascript) <export default as X>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-hot-toast/dist/index.mjs [app-ssr] (ecmascript)");
 "use client";
@@ -597,16 +648,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot
 ;
 ;
 ;
+;
+;
 const CreateProduct = ()=>{
-    const batteryTypes = [
-        "Liquid",
-        "Maintenance Free",
-        "Tubular",
-        "LiFePO4",
-        "AGM",
-        "Gel",
-        "Other"
-    ];
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     const [formData, setFormData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
         name: "",
         type: "",
@@ -683,6 +728,7 @@ const CreateProduct = ()=>{
                     warrantyMonths: 0,
                     quantity: 0
                 });
+                router.push("/dashboard/product");
             } else {
                 __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].error(res.message);
             }
@@ -712,19 +758,19 @@ const CreateProduct = ()=>{
                                             className: "w-8 h-8 text-blue-600"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                            lineNumber: 130,
+                                            lineNumber: 128,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         "Create Product"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                    lineNumber: 129,
+                                    lineNumber: 127,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                lineNumber: 128,
+                                lineNumber: 126,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$breadcrumb$2f$BreadCrumb$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -743,13 +789,13 @@ const CreateProduct = ()=>{
                                 ]
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                lineNumber: 134,
+                                lineNumber: 132,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                        lineNumber: 127,
+                        lineNumber: 125,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -767,7 +813,7 @@ const CreateProduct = ()=>{
                                                     children: "Basic Information"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                    lineNumber: 146,
+                                                    lineNumber: 145,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -786,13 +832,13 @@ const CreateProduct = ()=>{
                                                                             children: "*"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                            lineNumber: 155,
+                                                                            lineNumber: 154,
                                                                             columnNumber: 36
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 151,
+                                                                    lineNumber: 150,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -806,13 +852,13 @@ const CreateProduct = ()=>{
                                                                     onChange: handleChange
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 157,
+                                                                    lineNumber: 156,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                            lineNumber: 150,
+                                                            lineNumber: 149,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -827,13 +873,13 @@ const CreateProduct = ()=>{
                                                                             children: "*"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                            lineNumber: 174,
+                                                                            lineNumber: 173,
                                                                             columnNumber: 29
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 170,
+                                                                    lineNumber: 169,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -847,13 +893,13 @@ const CreateProduct = ()=>{
                                                                     onChange: handleChange
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 176,
+                                                                    lineNumber: 175,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                            lineNumber: 169,
+                                                            lineNumber: 168,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -868,13 +914,13 @@ const CreateProduct = ()=>{
                                                                             children: "*"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                            lineNumber: 192,
+                                                                            lineNumber: 191,
                                                                             columnNumber: 32
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 188,
+                                                                    lineNumber: 187,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -888,25 +934,25 @@ const CreateProduct = ()=>{
                                                                     onChange: handleChange
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 194,
+                                                                    lineNumber: 193,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                            lineNumber: 187,
+                                                            lineNumber: 186,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                    lineNumber: 149,
+                                                    lineNumber: 148,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                            lineNumber: 145,
+                                            lineNumber: 144,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -916,7 +962,7 @@ const CreateProduct = ()=>{
                                                     children: "Classification"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                    lineNumber: 208,
+                                                    lineNumber: 207,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -934,13 +980,13 @@ const CreateProduct = ()=>{
                                                                             children: "*"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                            lineNumber: 217,
+                                                                            lineNumber: 216,
                                                                             columnNumber: 28
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 213,
+                                                                    lineNumber: 212,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -956,7 +1002,7 @@ const CreateProduct = ()=>{
                                                                             children: "Select Type"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                            lineNumber: 227,
+                                                                            lineNumber: 226,
                                                                             columnNumber: 23
                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                         batteryTypes.map((type)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -964,19 +1010,19 @@ const CreateProduct = ()=>{
                                                                                 children: type
                                                                             }, type, false, {
                                                                                 fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                                lineNumber: 229,
+                                                                                lineNumber: 228,
                                                                                 columnNumber: 25
                                                                             }, ("TURBOPACK compile-time value", void 0)))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 219,
+                                                                    lineNumber: 218,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                            lineNumber: 212,
+                                                            lineNumber: 211,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -991,13 +1037,13 @@ const CreateProduct = ()=>{
                                                                             children: "*"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                            lineNumber: 241,
+                                                                            lineNumber: 240,
                                                                             columnNumber: 32
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 237,
+                                                                    lineNumber: 236,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -1013,7 +1059,7 @@ const CreateProduct = ()=>{
                                                                             children: "Select Category"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                            lineNumber: 251,
+                                                                            lineNumber: 250,
                                                                             columnNumber: 23
                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                         categories.map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1021,19 +1067,19 @@ const CreateProduct = ()=>{
                                                                                 children: cat.type
                                                                             }, cat._id, false, {
                                                                                 fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                                lineNumber: 253,
+                                                                                lineNumber: 252,
                                                                                 columnNumber: 25
                                                                             }, ("TURBOPACK compile-time value", void 0)))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 243,
+                                                                    lineNumber: 242,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                            lineNumber: 236,
+                                                            lineNumber: 235,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1048,13 +1094,13 @@ const CreateProduct = ()=>{
                                                                             children: "*"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                            lineNumber: 265,
+                                                                            lineNumber: 264,
                                                                             columnNumber: 32
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 261,
+                                                                    lineNumber: 260,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1073,7 +1119,7 @@ const CreateProduct = ()=>{
                                                                                     children: "Select Supplier"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                                    lineNumber: 276,
+                                                                                    lineNumber: 275,
                                                                                     columnNumber: 25
                                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                                 suppliers.map((sup)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1081,13 +1127,13 @@ const CreateProduct = ()=>{
                                                                                         children: sup.companyName
                                                                                     }, sup._id, false, {
                                                                                         fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                                        lineNumber: 278,
+                                                                                        lineNumber: 277,
                                                                                         columnNumber: 27
                                                                                     }, ("TURBOPACK compile-time value", void 0)))
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                            lineNumber: 268,
+                                                                            lineNumber: 267,
                                                                             columnNumber: 23
                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1097,31 +1143,31 @@ const CreateProduct = ()=>{
                                                                             children: "Add +"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                            lineNumber: 283,
+                                                                            lineNumber: 282,
                                                                             columnNumber: 23
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 267,
+                                                                    lineNumber: 266,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                            lineNumber: 260,
+                                                            lineNumber: 259,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                    lineNumber: 211,
+                                                    lineNumber: 210,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                            lineNumber: 207,
+                                            lineNumber: 206,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1131,7 +1177,7 @@ const CreateProduct = ()=>{
                                                     children: "Inventory & Pricing"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                    lineNumber: 296,
+                                                    lineNumber: 295,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1149,13 +1195,13 @@ const CreateProduct = ()=>{
                                                                             children: "*"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                            lineNumber: 305,
+                                                                            lineNumber: 304,
                                                                             columnNumber: 35
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 301,
+                                                                    lineNumber: 300,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1170,13 +1216,13 @@ const CreateProduct = ()=>{
                                                                     onChange: handleChange
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 307,
+                                                                    lineNumber: 306,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                            lineNumber: 300,
+                                                            lineNumber: 299,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1191,13 +1237,13 @@ const CreateProduct = ()=>{
                                                                             children: "*"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                            lineNumber: 325,
+                                                                            lineNumber: 324,
                                                                             columnNumber: 32
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 321,
+                                                                    lineNumber: 320,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1211,13 +1257,13 @@ const CreateProduct = ()=>{
                                                                     onChange: handleChange
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 327,
+                                                                    lineNumber: 326,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                            lineNumber: 320,
+                                                            lineNumber: 319,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1232,13 +1278,13 @@ const CreateProduct = ()=>{
                                                                             children: "*"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                            lineNumber: 344,
+                                                                            lineNumber: 343,
                                                                             columnNumber: 41
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 340,
+                                                                    lineNumber: 339,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1252,31 +1298,31 @@ const CreateProduct = ()=>{
                                                                     onChange: handleChange
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                    lineNumber: 346,
+                                                                    lineNumber: 345,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                            lineNumber: 339,
+                                                            lineNumber: 338,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                    lineNumber: 299,
+                                                    lineNumber: 298,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                            lineNumber: 295,
+                                            lineNumber: 294,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                    lineNumber: 144,
+                                    lineNumber: 143,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1291,14 +1337,14 @@ const CreateProduct = ()=>{
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                    lineNumber: 367,
+                                                    lineNumber: 366,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 "Cancel"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                            lineNumber: 362,
+                                            lineNumber: 361,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1323,7 +1369,7 @@ const CreateProduct = ()=>{
                                                                 strokeWidth: "4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                lineNumber: 386,
+                                                                lineNumber: 385,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1332,13 +1378,13 @@ const CreateProduct = ()=>{
                                                                 d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                                lineNumber: 394,
+                                                                lineNumber: 393,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                        lineNumber: 380,
+                                                        lineNumber: 379,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     "Saving..."
@@ -1349,7 +1395,7 @@ const CreateProduct = ()=>{
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                                        lineNumber: 404,
+                                                        lineNumber: 403,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     "Save Product"
@@ -1357,30 +1403,30 @@ const CreateProduct = ()=>{
                                             }, void 0, true)
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                            lineNumber: 370,
+                                            lineNumber: 369,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                                    lineNumber: 361,
+                                    lineNumber: 360,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                            lineNumber: 143,
+                            lineNumber: 142,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                        lineNumber: 142,
+                        lineNumber: 141,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                lineNumber: 125,
+                lineNumber: 123,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$model$2f$CreateSupplier$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1391,13 +1437,13 @@ const CreateProduct = ()=>{
                 }
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-                lineNumber: 413,
+                lineNumber: 412,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/app/dashboard/product/components/CreateProduct.tsx",
-        lineNumber: 124,
+        lineNumber: 122,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };

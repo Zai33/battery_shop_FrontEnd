@@ -1,6 +1,6 @@
 "use client";
 import { CreateNewSupplier } from "@/libs/api";
-import { CreateSupplierType } from "@/types/auth";
+import { CreateSupplierType } from "@/types/type";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 

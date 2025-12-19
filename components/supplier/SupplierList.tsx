@@ -7,7 +7,7 @@ import SupplierListSkeleton from "../loader/SupplierListSkeleton";
 import SupplierListEmpty from "./SupplierListEmpty";
 import SupplierRow from "./SupplierRow";
 import CreateSupplier from "@/model/CreateSupplier";
-import { Supplier } from "@/types/auth";
+import { Supplier } from "@/types/type";
 
 const SupplierList = () => {
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);

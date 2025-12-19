@@ -1,6 +1,6 @@
 "use client";
 import { LoginUser } from "@/libs/api";
-import { AuthResponse, LoginResult } from "@/types/auth";
+import { AuthResponse, LoginResult } from "@/types/type";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";

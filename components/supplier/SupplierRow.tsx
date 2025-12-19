@@ -1,5 +1,5 @@
 import { DeleteSupplier, UpdateSupplier } from "@/libs/api";
-import { Supplier } from "@/types/auth";
+import { Supplier } from "@/types/type";
 import { dotSpinner } from "ldrs";
 import React, { useState } from "react";
 import { createPortal } from "react-dom";

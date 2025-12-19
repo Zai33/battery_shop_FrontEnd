@@ -1,6 +1,6 @@
 "use client";
 import { ResendOtp, SignUpUser, VerifyOtp } from "@/libs/api";
-import { AuthResponse, SendOtpResponse } from "@/types/auth";
+import { AuthResponse, SendOtpResponse } from "@/types/type";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
