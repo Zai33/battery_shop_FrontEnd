@@ -93,12 +93,18 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 "use strict";
 
 __turbopack_context__.s([
+    "CreateBuyback",
+    ()=>CreateBuyback,
     "CreateNewProduct",
     ()=>CreateNewProduct,
     "CreateNewSupplier",
     ()=>CreateNewSupplier,
+    "DeleteBuyBackById",
+    ()=>DeleteBuyBackById,
     "DeleteProductById",
     ()=>DeleteProductById,
+    "DeleteSaleById",
+    ()=>DeleteSaleById,
     "DeleteSupplier",
     ()=>DeleteSupplier,
     "GetAllBuyBacks",
@@ -397,6 +403,20 @@ const GetSaleById = async (token, id)=>{
     }
 };
 _c17 = GetSaleById;
+const DeleteSaleById = async (token, id)=>{
+    try {
+        const res = await api.delete("/sale/delete/".concat(id), {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c18 = DeleteSaleById;
 const GetAllBuyBacks = async (token, page)=>{
     try {
         const res = await api.get("/buy-back?page=".concat(page), {
@@ -410,7 +430,7 @@ const GetAllBuyBacks = async (token, page)=>{
         throw error;
     }
 };
-_c18 = GetAllBuyBacks;
+_c19 = GetAllBuyBacks;
 const GetBuyBackById = async (token, id)=>{
     try {
         const res = await api.get("/buy-back/".concat(id), {
@@ -424,7 +444,35 @@ const GetBuyBackById = async (token, id)=>{
         throw error;
     }
 };
-_c19 = GetBuyBackById;
+_c20 = GetBuyBackById;
+const DeleteBuyBackById = async (token, id)=>{
+    try {
+        const res = await api.delete("/buy-back/delete/".concat(id), {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c21 = DeleteBuyBackById;
+const CreateBuyback = async (token, data)=>{
+    try {
+        const res = await api.post("/buy-back/create", data, {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c22 = CreateBuyback;
 const SearchProductByName = async (token, keyword)=>{
     try {
         const res = await api.get("/product/search?key=".concat(keyword), {
@@ -438,8 +486,8 @@ const SearchProductByName = async (token, keyword)=>{
         throw error;
     }
 };
-_c20 = SearchProductByName;
-var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12, _c13, _c14, _c15, _c16, _c17, _c18, _c19, _c20;
+_c23 = SearchProductByName;
+var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12, _c13, _c14, _c15, _c16, _c17, _c18, _c19, _c20, _c21, _c22, _c23;
 __turbopack_context__.k.register(_c, "LoginUser");
 __turbopack_context__.k.register(_c1, "SignUpUser");
 __turbopack_context__.k.register(_c2, "VerifyOtp");
@@ -458,9 +506,12 @@ __turbopack_context__.k.register(_c14, "GetAllSales");
 __turbopack_context__.k.register(_c15, "SaleCreate");
 __turbopack_context__.k.register(_c16, "GetAllSale");
 __turbopack_context__.k.register(_c17, "GetSaleById");
-__turbopack_context__.k.register(_c18, "GetAllBuyBacks");
-__turbopack_context__.k.register(_c19, "GetBuyBackById");
-__turbopack_context__.k.register(_c20, "SearchProductByName");
+__turbopack_context__.k.register(_c18, "DeleteSaleById");
+__turbopack_context__.k.register(_c19, "GetAllBuyBacks");
+__turbopack_context__.k.register(_c20, "GetBuyBackById");
+__turbopack_context__.k.register(_c21, "DeleteBuyBackById");
+__turbopack_context__.k.register(_c22, "CreateBuyback");
+__turbopack_context__.k.register(_c23, "SearchProductByName");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -689,16 +740,23 @@ __turbopack_context__.s([
     ()=>__TURBOPACK__default__export__
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/libs/api.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$ldrs$2f$dist$2f$elements$2f$dotSpinner$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__dotSpinner$3e$__ = __turbopack_context__.i("[project]/node_modules/ldrs/dist/elements/dotSpinner.js [app-client] (ecmascript) <export default as dotSpinner>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-hot-toast/dist/index.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$hi$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-icons/hi/index.mjs [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+;
+;
+;
+__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$ldrs$2f$dist$2f$elements$2f$dotSpinner$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__dotSpinner$3e$__["dotSpinner"].register();
 const SaleRow = (param)=>{
-    let { sale, index } = param;
+    let { sale, index, onDeleteSuccess } = param;
     _s();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const [showDeletModal, setShowDeleteModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -715,6 +773,24 @@ const SaleRow = (param)=>{
         hour12: true
     });
     const token = localStorage.getItem("token") || "";
+    const handleDelete = async ()=>{
+        setIsDeleting(true);
+        try {
+            const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DeleteSaleById"])(token, sale._id);
+            if (res.con) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].success(res.message);
+                setShowDeleteModal(false);
+                onDeleteSuccess === null || onDeleteSuccess === void 0 ? void 0 : onDeleteSuccess();
+            } else {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].error(res.message);
+            }
+        } catch (error) {
+            const message = error instanceof Error ? error.message : "Failed to delete sale";
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].error(message);
+        } finally{
+            setIsDeleting(false);
+        }
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
@@ -726,7 +802,7 @@ const SaleRow = (param)=>{
                         children: index
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                        lineNumber: 36,
+                        lineNumber: 62,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -734,7 +810,7 @@ const SaleRow = (param)=>{
                         children: sale.customer.name
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                        lineNumber: 37,
+                        lineNumber: 63,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -742,7 +818,7 @@ const SaleRow = (param)=>{
                         children: sale.carNumber
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                        lineNumber: 38,
+                        lineNumber: 64,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -750,7 +826,7 @@ const SaleRow = (param)=>{
                         children: sale.product.name
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                        lineNumber: 39,
+                        lineNumber: 65,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -758,7 +834,7 @@ const SaleRow = (param)=>{
                         children: sale.quantity
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                        lineNumber: 40,
+                        lineNumber: 66,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -766,7 +842,7 @@ const SaleRow = (param)=>{
                         children: sale.totalPrice
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                        lineNumber: 41,
+                        lineNumber: 67,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -774,7 +850,7 @@ const SaleRow = (param)=>{
                         children: sale.paymentMethod
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                        lineNumber: 42,
+                        lineNumber: 68,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -786,7 +862,7 @@ const SaleRow = (param)=>{
                                     children: formattedDate
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                                    lineNumber: 45,
+                                    lineNumber: 71,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -794,18 +870,18 @@ const SaleRow = (param)=>{
                                     children: formattedTime
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                                    lineNumber: 46,
+                                    lineNumber: 72,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                            lineNumber: 44,
+                            lineNumber: 70,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                        lineNumber: 43,
+                        lineNumber: 69,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -821,44 +897,47 @@ const SaleRow = (param)=>{
                                         className: "text-blue-500"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                                        lineNumber: 56,
+                                        lineNumber: 82,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                                    lineNumber: 52,
+                                    lineNumber: 78,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    onClick: ()=>setShowDeleteModal(true),
+                                    onClick: (e)=>{
+                                        e.stopPropagation();
+                                        setShowDeleteModal(true);
+                                    },
                                     className: " size-10 flex justify-center items-center text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$hi$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["HiOutlineTrash"], {
                                         className: "text-red-500"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                                        lineNumber: 62,
+                                        lineNumber: 91,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                                    lineNumber: 58,
+                                    lineNumber: 84,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                            lineNumber: 51,
+                            lineNumber: 77,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                        lineNumber: 50,
+                        lineNumber: 76,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                lineNumber: 32,
+                lineNumber: 58,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             showDeletModal && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -872,7 +951,7 @@ const SaleRow = (param)=>{
                                 children: "Confirm Delete"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                                lineNumber: 72,
+                                lineNumber: 101,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -880,7 +959,7 @@ const SaleRow = (param)=>{
                                 children: "Are you sure you want to delete this product?"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                                lineNumber: 76,
+                                lineNumber: 105,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -892,11 +971,12 @@ const SaleRow = (param)=>{
                                         children: "Cancel"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                                        lineNumber: 81,
+                                        lineNumber: 110,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         className: "px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition",
+                                        onClick: handleDelete,
                                         children: isDeleting ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 dangerouslySetInnerHTML: {
@@ -904,30 +984,30 @@ const SaleRow = (param)=>{
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                                                lineNumber: 94,
+                                                lineNumber: 123,
                                                 columnNumber: 23
                                             }, ("TURBOPACK compile-time value", void 0))
                                         }, void 0, false) : "OK"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                                        lineNumber: 88,
+                                        lineNumber: 117,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                                lineNumber: 80,
+                                lineNumber: 109,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                        lineNumber: 71,
+                        lineNumber: 100,
                         columnNumber: 13
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/sale/components/SaleRow.tsx",
-                    lineNumber: 70,
+                    lineNumber: 99,
                     columnNumber: 11
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false)
@@ -1009,6 +1089,13 @@ const SaleList = ()=>{
             fetchSales(1);
         }
     }["SaleList.useEffect"], []);
+    const handleDeleteSuccess = ()=>{
+        if (sales.length === 1 && currentPage > 1) {
+            fetchSales(currentPage - 1);
+        } else {
+            fetchSales(currentPage);
+        }
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "p-4",
         children: [
@@ -1024,19 +1111,19 @@ const SaleList = ()=>{
                                     className: "w-8 h-8 text-blue-600"
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                    lineNumber: 52,
+                                    lineNumber: 60,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 "Sales List"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                            lineNumber: 51,
+                            lineNumber: 59,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                        lineNumber: 50,
+                        lineNumber: 58,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1049,7 +1136,7 @@ const SaleList = ()=>{
                                         className: "absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                        lineNumber: 58,
+                                        lineNumber: 66,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1058,13 +1145,13 @@ const SaleList = ()=>{
                                         className: "pl-10 pr-4 py-2 rounded-lg shadow-lg border border-gray-200  focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                        lineNumber: 59,
+                                        lineNumber: 67,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                lineNumber: 57,
+                                lineNumber: 65,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1073,19 +1160,19 @@ const SaleList = ()=>{
                                 children: "+ Create New Voucher"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                lineNumber: 66,
+                                lineNumber: 74,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                        lineNumber: 56,
+                        lineNumber: 64,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                lineNumber: 49,
+                lineNumber: 57,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$breadcrumb$2f$BreadCrumb$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1100,7 +1187,7 @@ const SaleList = ()=>{
                 ]
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                lineNumber: 75,
+                lineNumber: 83,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1118,7 +1205,7 @@ const SaleList = ()=>{
                                         children: "#"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                        lineNumber: 83,
+                                        lineNumber: 91,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1127,7 +1214,7 @@ const SaleList = ()=>{
                                         children: "Customer"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                        lineNumber: 86,
+                                        lineNumber: 94,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1136,7 +1223,7 @@ const SaleList = ()=>{
                                         children: "Car.No"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                        lineNumber: 89,
+                                        lineNumber: 97,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1145,7 +1232,7 @@ const SaleList = ()=>{
                                         children: "Product"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                        lineNumber: 92,
+                                        lineNumber: 100,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1154,7 +1241,7 @@ const SaleList = ()=>{
                                         children: "Qty"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                        lineNumber: 95,
+                                        lineNumber: 103,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1163,7 +1250,7 @@ const SaleList = ()=>{
                                         children: "Total (MMK)"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                        lineNumber: 98,
+                                        lineNumber: 106,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1172,7 +1259,7 @@ const SaleList = ()=>{
                                         children: "Payment"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                        lineNumber: 101,
+                                        lineNumber: 109,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1181,7 +1268,7 @@ const SaleList = ()=>{
                                         children: "Sale Date"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                        lineNumber: 104,
+                                        lineNumber: 112,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1190,53 +1277,54 @@ const SaleList = ()=>{
                                         children: "Action"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                        lineNumber: 107,
+                                        lineNumber: 115,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                lineNumber: 82,
+                                lineNumber: 90,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                            lineNumber: 81,
+                            lineNumber: 89,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
                             children: isLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$loader$2f$SaleListSkeleton$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                 fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                lineNumber: 114,
+                                lineNumber: 122,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)) : sales.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$sale$2f$components$2f$SaleListEmpty$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                 fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                lineNumber: 116,
+                                lineNumber: 124,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)) : sales.map((sale, index)=>{
                                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$dashboard$2f$sale$2f$components$2f$SaleRow$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                     sale: sale,
-                                    index: index + 1
+                                    index: index + 1,
+                                    onDeleteSuccess: handleDeleteSuccess
                                 }, index, false, {
                                     fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                    lineNumber: 120,
+                                    lineNumber: 128,
                                     columnNumber: 19
                                 }, ("TURBOPACK compile-time value", void 0));
                             })
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                            lineNumber: 112,
+                            lineNumber: 120,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                    lineNumber: 80,
+                    lineNumber: 88,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                lineNumber: 79,
+                lineNumber: 87,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             totalPages > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1251,7 +1339,7 @@ const SaleList = ()=>{
                             children: "⬅ Prev"
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                            lineNumber: 135,
+                            lineNumber: 143,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1263,7 +1351,7 @@ const SaleList = ()=>{
                                     children: currentPage
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                    lineNumber: 148,
+                                    lineNumber: 156,
                                     columnNumber: 20
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 " of",
@@ -1273,13 +1361,13 @@ const SaleList = ()=>{
                                     children: totalPages
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                                    lineNumber: 149,
+                                    lineNumber: 157,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                            lineNumber: 147,
+                            lineNumber: 155,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1289,24 +1377,24 @@ const SaleList = ()=>{
                             children: "Next ➡"
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                            lineNumber: 151,
+                            lineNumber: 159,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                    lineNumber: 134,
+                    lineNumber: 142,
                     columnNumber: 11
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-                lineNumber: 133,
+                lineNumber: 141,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/app/dashboard/sale/components/SaleList.tsx",
-        lineNumber: 47,
+        lineNumber: 55,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };

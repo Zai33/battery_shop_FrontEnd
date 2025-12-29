@@ -1,10 +1,9 @@
 import {
   AuthResponse,
+  BuyBackForm,
   CreateProductType,
   CreateSupplierType,
-  Product,
   ProductResponse,
-  Sale,
   SaleForm,
   SendOtpResponse,
   Supplier,
@@ -316,6 +315,21 @@ export const GetSaleById = async (token: string, id: string) => {
   }
 };
 
+//delete by id
+export const DeleteSaleById = async (token: string, id: string) => {
+  try {
+    const res = await api.delete(`/sale/delete/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
 //get all buybacks
 export const GetAllBuyBacks = async (token: string, page: number) => {
   try {
@@ -335,6 +349,36 @@ export const GetAllBuyBacks = async (token: string, page: number) => {
 export const GetBuyBackById = async (token: string, id: string) => {
   try {
     const res = await api.get(`/buy-back/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+//delete buyback by id
+export const DeleteBuyBackById = async (token: string, id: string) => {
+  try {
+    const res = await api.delete(`/buy-back/delete/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+// create stanalone buyback
+export const CreateBuyback = async (token: string, data: BuyBackForm) => {
+  try {
+    const res = await api.post(`/buy-back/create`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

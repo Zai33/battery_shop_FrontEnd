@@ -34,3 +34,13 @@
 * {
   scrollbar-width: none; 
 }
+
+/* PDF SAFE MODE */
+.pdf-safe * {
+  color: #000 !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  border-color: #000 !important;
+}
+

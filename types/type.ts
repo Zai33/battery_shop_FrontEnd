@@ -87,9 +87,9 @@ export interface BuyBackItem {
   batterySize: string;
   condition: string;
   quantity: number;
+  reusableQty: number;
   buyPrice: number;
   inspectionNote: string;
-  reused: boolean;
   total: number;
 }
 
@@ -146,4 +146,27 @@ export interface Sale {
   duePayment: number;
   isPaid: boolean;
   saleDate: Date;
+}
+
+export interface RebuyBattery {
+  batterySize: string;
+  quantity: number;
+  reusableQty: number;
+  buyPrice: number;
+  total: number;
+}
+
+export interface BuyBack {
+  _id: string;
+  buybackNumber: string;
+  customer: Customer;
+  batteries: RebuyBattery[];
+  createdBy: User;
+  sale: Sale;
+  buyDate: Date;
+}
+
+export interface BuyBackForm {
+  customerInfo: { name: string; phone: string };
+  buybackData: RebuyBattery[];
 }

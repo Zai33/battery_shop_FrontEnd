@@ -82,9 +82,9 @@ const CreateSale = () => {
           batterySize: "",
           condition: "",
           quantity: 1,
+          reusableQty: 0,
           buyPrice: 0,
           inspectionNote: "",
-          reused: false,
           total: 0,
         },
       ],
@@ -147,7 +147,6 @@ const CreateSale = () => {
       ...saleForm,
       buybackData: saleForm.rebuyOldBattery ? saleForm.buybackData : [],
     };
-    console.log("payLoad", payLoad);
     try {
       const res = await SaleCreate(token, payLoad);
       if (res.con) {
@@ -172,9 +171,9 @@ const CreateSale = () => {
               batterySize: "",
               condition: "",
               quantity: 1,
+              reusableQty: 0,
               buyPrice: 0,
               inspectionNote: "",
-              reused: false,
               total: 0,
             },
           ],
@@ -185,6 +184,7 @@ const CreateSale = () => {
         toast.error(res.message);
       }
       setIsLoading(false);
+      // router.push(`/dashboard/sale/detail/`);
     } catch (error: unknown) {
       const message =
         error instanceof Error

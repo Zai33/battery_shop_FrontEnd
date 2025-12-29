@@ -36,7 +36,6 @@ const SaleDetail = () => {
       setIsLoading(false);
     }
   };
-  console.log("sale", sale);
 
   useEffect(() => {
     if (!id) return;

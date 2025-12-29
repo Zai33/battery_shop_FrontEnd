@@ -160,12 +160,18 @@ const handleApiError = (error)=>{
 "use strict";
 
 __turbopack_context__.s([
+    "CreateBuyback",
+    ()=>CreateBuyback,
     "CreateNewProduct",
     ()=>CreateNewProduct,
     "CreateNewSupplier",
     ()=>CreateNewSupplier,
+    "DeleteBuyBackById",
+    ()=>DeleteBuyBackById,
     "DeleteProductById",
     ()=>DeleteProductById,
+    "DeleteSaleById",
+    ()=>DeleteSaleById,
     "DeleteSupplier",
     ()=>DeleteSupplier,
     "GetAllBuyBacks",
@@ -446,6 +452,19 @@ const GetSaleById = async (token, id)=>{
         throw error;
     }
 };
+const DeleteSaleById = async (token, id)=>{
+    try {
+        const res = await api.delete(`/sale/delete/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
 const GetAllBuyBacks = async (token, page)=>{
     try {
         const res = await api.get(`/buy-back?page=${page}`, {
@@ -462,6 +481,32 @@ const GetAllBuyBacks = async (token, page)=>{
 const GetBuyBackById = async (token, id)=>{
     try {
         const res = await api.get(`/buy-back/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const DeleteBuyBackById = async (token, id)=>{
+    try {
+        const res = await api.delete(`/buy-back/delete/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const CreateBuyback = async (token, data)=>{
+    try {
+        const res = await api.post(`/buy-back/create`, data, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -579,9 +624,9 @@ const CreateSale = ()=>{
                     batterySize: "",
                     condition: "",
                     quantity: 1,
+                    reusableQty: 0,
                     buyPrice: 0,
                     inspectionNote: "",
-                    reused: false,
                     total: 0
                 }
             ]
@@ -636,7 +681,6 @@ const CreateSale = ()=>{
             ...saleForm,
             buybackData: saleForm.rebuyOldBattery ? saleForm.buybackData : []
         };
-        console.log("payLoad", payLoad);
         try {
             const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SaleCreate"])(token, payLoad);
             if (res.con) {
@@ -664,9 +708,9 @@ const CreateSale = ()=>{
                             batterySize: "",
                             condition: "",
                             quantity: 1,
+                            reusableQty: 0,
                             buyPrice: 0,
                             inspectionNote: "",
-                            reused: false,
                             total: 0
                         }
                     ]
@@ -677,6 +721,7 @@ const CreateSale = ()=>{
                 __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].error(res.message);
             }
             setIsLoading(false);
+        // router.push(`/dashboard/sale/detail/`);
         } catch (error) {
             const message = error instanceof Error ? error.message : "Failed to create new Sale. Please try again.";
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].error(message);

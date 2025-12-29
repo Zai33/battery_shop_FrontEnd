@@ -1,17 +1,15 @@
 import React, { useRef } from "react";
-import jsPDF from "jspdf";
-// import html2canvas from "html2canvas";
-import { toPng } from "html-to-image";
 import { Sale } from "@/types/type";
 import { BatteryCharging, Download } from "lucide-react";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 interface Props {
   data: Sale;
 }
 
 const Voucher = ({ data }: Props) => {
-  const voucherRef = useRef<HTMLDivElement>(null);
-
+  const printRef = useRef<HTMLDivElement>(null);
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
@@ -41,28 +39,35 @@ const Voucher = ({ data }: Props) => {
     new Date(data.warrantyExpiry)
   );
 
+  //download with pdf handler
   const handleDownload = async () => {
-    if (!voucherRef.current) return;
+    const content = printRef.current;
+    if (!content) return;
 
-    console.log("Generating pdf....");
+    const originalClass = content.className;
+    content.className += " pdf-safe";
 
     try {
-      // 3. Use toPng instead of html2canvas
-      // pixelRatio: 2 ensures high quality (retina) output similar to scale: 2
-      const imgData = await toPng(voucherRef.current, {
-        cacheBust: true,
-        pixelRatio: 2,
+      const canvas = await html2canvas(content, {
+        scale: 2,
+        backgroundColor: "#ffffff",
+        useCORS: true,
       });
 
-      const pdf = new jsPDF("p", "mm", "a4");
-      const imgProps = pdf.getImageProperties(imgData);
+      const dataUrl = canvas.toDataURL("image/png");
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "px",
+        format: "a4",
+      });
+      const imageProps = pdf.getImageProperties(dataUrl);
       const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      const pdfHeight = (imageProps.height * pdfWidth) / imageProps.width;
 
-      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
       pdf.save(`voucher_${data.carNumber}.pdf`);
-    } catch (err) {
-      console.error("Failed to generate PDF", err);
+    } finally {
+      content.className = originalClass;
     }
   };
 
@@ -80,10 +85,10 @@ const Voucher = ({ data }: Props) => {
         </button>
         <div
           className="w-[70%] mx-auto h-full flex flex-col items-center bg-white rounded-lg shadow-md p-6"
-          ref={voucherRef}
+          ref={printRef}
         >
           {/* header division */}
-          <div className="mt-4 flex flex-col items-center gap-3 border-b border-blue-700 pb-4">
+          <div className="mt-4 flex flex-col items-center gap-3 border-b border-gray-700 pb-4">
             <h1 className="text-3xl font-bold tracking-wide text-gray-800 flex items-center gap-2">
               <BatteryCharging className="w-8 h-8 text-green-600" />
               KYAW GYI BATTERY
@@ -102,44 +107,71 @@ const Voucher = ({ data }: Props) => {
           {/* Date & Car No */}
           <div className="w-full mt-3 flex justify-evenly text-sm text-gray-700">
             <div className="flex items-center gap-1">
+              <span className="text-gray-500">Invoice:</span>
+              <span className="font-medium text-gray-600">
+                {data.invoiceNumber}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-1">
               <span className="text-gray-500">Date:</span>
-              <span className="font-medium text-sky-600">
+              <span className="font-medium text-gray-600">
                 {formatDate(data.saleDate.toString())}
               </span>
             </div>
 
             <div className="flex items-center gap-1">
               <span className="text-gray-500">Car No:</span>
-              <span className="font-medium text-sky-600">{data.carNumber}</span>
+              <span className="font-medium text-gray-600">
+                {data.carNumber}
+              </span>
             </div>
           </div>
 
           {/* Sale Details */}
-          <div className="mt-4 text-sm min-w-[80%]">
-            {/* Header */}
-            <p className="font-medium text-gray-700 mb-1">Sale Products</p>
-            <div className="flex justify-between text-gray-500 border-b pb-1">
-              <span className="flex-1">Product</span>
-              <span className="w-12 text-center">Qty</span>
-              <span className="w-20 text-center">Warranty</span>
-              <span className="w-20 text-right">Price</span>
-              <span className="w-24 text-right font-medium">Total</span>
+          <div className="mt-6 w-full text-sm">
+            <p className="font-semibold mb-3 tracking-wide">Sale Products</p>
+
+            <div className="overflow-hidden rounded-lg border-none">
+              <table className="w-full border-collapse">
+                <thead className="bg-gray-200">
+                  <tr className="text-xs uppercase tracking-wider text-gray-600">
+                    <th className="text-left px-3 py-2 font-medium">Product</th>
+                    <th className="text-center px-3 py-2 font-medium w-16">
+                      Qty
+                    </th>
+                    <th className="text-center px-3 py-2 font-medium w-24">
+                      Warranty
+                    </th>
+                    <th className="text-right px-3 py-2 font-medium w-24">
+                      Price
+                    </th>
+                    <th className="text-right px-3 py-2 font-medium w-28">
+                      Total
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr className="bg-gray-50 hover:bg-gray-100">
+                    <td className="px-3 py-2 font-medium">
+                      {data.product.name}
+                    </td>
+                    <td className="px-3 py-2 text-center">{data.quantity}</td>
+                    <td className="px-3 py-2 text-center">
+                      {months} {months > 1 ? "months" : "month"}
+                    </td>
+                    <td className="px-3 py-2 text-right">
+                      {data.salePrice.toLocaleString()}
+                    </td>
+                    <td className="px-3 py-2 text-right font-semibold">
+                      {(data.quantity * data.salePrice).toLocaleString()}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            {/* Row */}
-            <div className="flex justify-between py-1 text-gray-800">
-              <span className="flex-1 truncate">{data.product.name}</span>
-              <span className="w-12 text-center">{data.quantity}</span>
-              <span className="w-20 text-center">
-                {months} {months > 1 ? "months" : "month"}
-              </span>
-              <span className="w-20 text-right">
-                {data.salePrice.toLocaleString()}
-              </span>
-              <span className="w-24 text-right font-medium">
-                {(data.quantity * data.salePrice).toLocaleString()}
-              </span>
-            </div>
             {/* for multiple products, FIX LATER */}
             {/* {data.items.map((item, index) => (
               <div
@@ -160,86 +192,104 @@ const Voucher = ({ data }: Props) => {
 
           {/* Buyback Details */}
           {data.buyback?.length > 0 && (
-            <div className="mt-4 text-sm min-w-[80%]">
-              <p className="font-medium text-gray-700 mb-1">
-                Buyback Batteries
-              </p>
+            <div className="mt-6 w-full text-sm">
+              <p className="font-semibold mb-2">Buyback Batteries</p>
+              <div className="overflow-hidden rounded-lg border-none">
+                <table className="w-full border-collapse">
+                  <thead className="bg-gray-200">
+                    <tr className="text-xs uppercase tracking-wider text-gray-600">
+                      <th className="text-left px-3 py-2 font-medium">Size</th>
+                      <th className="text-center px-2 py-1 font-medium w-16">
+                        Qty
+                      </th>
+                      <th className="text-right px-2 py-1 font-medium w-24">
+                        Price
+                      </th>
+                      <th className="text-right px-2 py-1 font-medium w-28">
+                        Total
+                      </th>
+                    </tr>
+                  </thead>
 
-              {/* Header */}
-              <div className="flex justify-between text-gray-500 border-b pb-1">
-                <span className="flex-1">Size</span>
-                <span className="w-12 text-center">Qty</span>
-                <span className="w-20 text-right">Price</span>
-                <span className="w-24 text-right font-medium">Total</span>
+                  <tbody>
+                    {data.buyback.map((bb, i) =>
+                      bb.batteries.map((bat, j) => (
+                        <tr
+                          key={`${i}-${j}`}
+                          className="bg-gray-50 hover:bg-gray-100"
+                        >
+                          <td className="px-2 py-1">{bat.batterySize}</td>
+                          <td className="text-center px-2 py-2">
+                            {bat.quantity}
+                          </td>
+                          <td className="text-right px-2 py-1">
+                            {bat.buyPrice.toLocaleString()}
+                          </td>
+                          <td className="text-right px-2 py-1 font-medium">
+                            {bat.total.toLocaleString()}
+                          </td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
               </div>
-
-              {/* Rows */}
-              {data.buyback.map((bb, i) =>
-                bb.batteries.map((bat, j) => (
-                  <div
-                    key={`${i}-${j}`}
-                    className="flex justify-between py-1 text-gray-800"
-                  >
-                    <span className="flex-1">
-                      {bat.batterySize}
-                      {!bat.reused && (
-                        <span className="ml-1 text-xs text-gray-400">
-                          (scrap)
-                        </span>
-                      )}
-                    </span>
-                    <span className="w-12 text-center">{bat.quantity}</span>
-                    <span className="w-20 text-right">
-                      {bat.buyPrice.toLocaleString()}
-                    </span>
-                    <span className="w-24 text-right font-medium">
-                      {bat.total.toLocaleString()}
-                    </span>
-                  </div>
-                ))
-              )}
             </div>
           )}
 
           {/* Payment Details */}
-          <div className="min-w-[90%] mt-6 text-sm border-t pt-1 text-gray-700">
-            <div className="flex justify-between">
-              <span>Method</span>
-              <span className="font-medium">{data.paymentMethod}</span>
-            </div>
-
-            <div className="flex justify-between">
-              <span>Status</span>
-              <span
-                className={`font-medium ${
-                  data.isPaid ? "text-green-600" : "text-red-600"
-                }`}
-              >
-                {data.isPaid
-                  ? "PAID"
-                  : data.duePayment > 0
-                  ? "UNPAID"
-                  : "PARTIAL"}
-              </span>
-            </div>
-
-            <div className="flex justify-between">
-              <span>Paid</span>
-              <span className="font-medium text-right">
-                {data.rebuyOldBattery
-                  ? `${data.totalPrice.toLocaleString()} - ${data.oldBatteryPrice.toLocaleString()} = ${data.paidAmount.toLocaleString()}`
-                  : data.paidAmount.toLocaleString()}
-              </span>
-            </div>
-
-            {!data.isPaid && (
-              <div className="flex justify-between">
-                <span>Due</span>
-                <span className="font-medium text-red-600">
-                  {data.duePayment.toLocaleString()}
-                </span>
-              </div>
-            )}
+          <div className="w-full mt-6 text-sm">
+            <p className="font-semibold mb-2">Payment</p>
+            <table className="table-auto ml-auto bg-gray-50 rounded-lg overflow-hidden shadow-sm">
+              <tbody>
+                <tr className="bg-gray-50 hover:bg-gray-100">
+                  <td className="font-medium text-left px-4 py-2">Method</td>
+                  <td className="font-medium text-right px-4 py-2">
+                    {data.paymentMethod}
+                  </td>
+                </tr>
+                <tr className="bg-gray-50 hover:bg-gray-100">
+                  <td className="font-medium text-left px-4 py-2">Status</td>
+                  <td
+                    className={`font-medium text-right px-4 py-2 ${
+                      data.isPaid ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    {data.isPaid
+                      ? "PAID"
+                      : data.duePayment === 0
+                      ? "UNPAID"
+                      : "PARTIAL"}
+                  </td>
+                </tr>
+                <tr className="bg-gray-50 hover:bg-gray-100">
+                  <td className="font-medium text-left px-4 py-2">Paid</td>
+                  <td className="font-medium text-right px-4 py-2">
+                    {data.rebuyOldBattery ? (
+                      <>
+                        {data.totalPrice.toLocaleString()} -{" "}
+                        {data.oldBatteryPrice.toLocaleString()} ={" "}
+                        <span className="text-green-600">
+                          {data.paidAmount.toLocaleString()}
+                        </span>
+                      </>
+                    ) : (
+                      <span className="text-green-600">
+                        {data.paidAmount.toLocaleString()}
+                      </span>
+                    )}
+                  </td>
+                </tr>
+                {!data.isPaid && (
+                  <tr className="bg-gray-50 hover:bg-gray-100">
+                    <td className="font-medium text-left px-4 py-2">Due</td>
+                    <td className="font-medium text-red-600 text-right px-4 py-2">
+                      {data.duePayment.toLocaleString()}
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
 
           {/* Footer */}

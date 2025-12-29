@@ -43,6 +43,14 @@ const SaleList = () => {
     fetchSales(1);
   }, []);
 
+  const handleDeleteSuccess = () => {
+    if (sales.length === 1 && currentPage > 1) {
+      fetchSales(currentPage - 1);
+    } else {
+      fetchSales(currentPage);
+    }
+  };
+
   return (
     <div className="p-4">
       {/* uppder division */}
@@ -121,7 +129,7 @@ const SaleList = () => {
                     key={index}
                     sale={sale}
                     index={index + 1}
-                    // onDeleteSuccess={handleDeleteSuccess}
+                    onDeleteSuccess={handleDeleteSuccess}
                   />
                 );
               })

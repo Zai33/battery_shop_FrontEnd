@@ -1,10 +1,7 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
+  "/dashboard/buyback/page": "app/dashboard/buyback/page.js",
+  "/dashboard/buyback/update/[id]/page": "app/dashboard/buyback/update/[id]/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/sale/create/page": "app/dashboard/sale/create/page.js",
-  "/dashboard/sale/detail/[id]/page": "app/dashboard/sale/detail/[id]/page.js",
-  "/dashboard/sale/page": "app/dashboard/sale/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/login/page": "app/login/page.js",
   "/page": "app/page.js"
 }

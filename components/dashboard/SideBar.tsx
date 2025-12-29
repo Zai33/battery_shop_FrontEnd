@@ -6,6 +6,7 @@ import React from "react";
 import {
   LayoutDashboard,
   Package,
+  Recycle,
   ShoppingCart,
   Truck,
   Users2,
@@ -16,6 +17,7 @@ const navItems = [
   { name: "Sale", href: "/dashboard/sale", icon: ShoppingCart },
   { name: "Product", href: "/dashboard/product", icon: Package },
   { name: "Second Hand", href: "/dashboard/secondProduct", icon: Package },
+  { name: "BuyBack", href: "/dashboard/buyback", icon: Recycle },
   { name: "Customer", href: "/dashboard/customer", icon: Users2 },
   { name: "Supplier", href: "/dashboard/suppliers", icon: Truck },
 ];

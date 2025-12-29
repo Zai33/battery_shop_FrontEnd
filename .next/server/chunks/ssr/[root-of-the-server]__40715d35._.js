@@ -107,18 +107,28 @@ __turbopack_context__.s([
     ()=>CreateNewSupplier,
     "DeleteProductById",
     ()=>DeleteProductById,
+    "DeleteSaleById",
+    ()=>DeleteSaleById,
     "DeleteSupplier",
     ()=>DeleteSupplier,
+    "GetAllBuyBacks",
+    ()=>GetAllBuyBacks,
     "GetAllCategories",
     ()=>GetAllCategories,
     "GetAllProducts",
     ()=>GetAllProducts,
+    "GetAllSale",
+    ()=>GetAllSale,
     "GetAllSales",
     ()=>GetAllSales,
     "GetAllSuppliers",
     ()=>GetAllSuppliers,
+    "GetBuyBackById",
+    ()=>GetBuyBackById,
     "GetProductById",
     ()=>GetProductById,
+    "GetSaleById",
+    ()=>GetSaleById,
     "LoginUser",
     ()=>LoginUser,
     "ResendOtp",
@@ -340,9 +350,74 @@ const GetAllSales = async (token, page)=>{
         throw error;
     }
 };
-const SaleCreate = async (token, data)=>{
+const SaleCreate = async (token, saleData)=>{
     try {
-        const res = await api.post(`/sale/create`, data, {
+        const res = await api.post(`/sale/create`, saleData, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const GetAllSale = async (token, page)=>{
+    try {
+        const res = await api.get(`/sale?page=${page}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const GetSaleById = async (token, id)=>{
+    try {
+        const res = await api.get(`/sale/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const DeleteSaleById = async (token, id)=>{
+    try {
+        const res = await api.delete(`/sale/delete/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const GetAllBuyBacks = async (token, page)=>{
+    try {
+        const res = await api.get(`/buy-back?page=${page}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const GetBuyBackById = async (token, id)=>{
+    try {
+        const res = await api.get(`/buy-back/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

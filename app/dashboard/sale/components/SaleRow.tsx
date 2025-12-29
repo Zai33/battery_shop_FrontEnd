@@ -1,14 +1,20 @@
+import { DeleteSaleById } from "@/libs/api";
 import { Sale } from "@/types/type";
+import { dotSpinner } from "ldrs";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { HiOutlinePencil, HiOutlineTrash } from "react-icons/hi";
+
+dotSpinner.register();
 
 interface Props {
   sale: Sale;
   index: number;
+  onDeleteSuccess?: () => void;
 }
 
-const SaleRow = ({ sale, index }: Props) => {
+const SaleRow = ({ sale, index, onDeleteSuccess }: Props) => {
   const router = useRouter();
   const [showDeletModal, setShowDeleteModal] = useState<boolean>(false);
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
@@ -26,6 +32,26 @@ const SaleRow = ({ sale, index }: Props) => {
   });
 
   const token = localStorage.getItem("token") || "";
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    try {
+      const res = await DeleteSaleById(token, sale._id);
+      if (res.con) {
+        toast.success(res.message);
+        setShowDeleteModal(false);
+        onDeleteSuccess?.();
+      } else {
+        toast.error(res.message);
+      }
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error ? error.message : "Failed to delete sale";
+      toast.error(message);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
 
   return (
     <>
@@ -56,7 +82,10 @@ const SaleRow = ({ sale, index }: Props) => {
               <HiOutlinePencil className="text-blue-500" />
             </button>
             <button
-              onClick={() => setShowDeleteModal(true)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowDeleteModal(true);
+              }}
               className=" size-10 flex justify-center items-center text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
             >
               <HiOutlineTrash className="text-red-500" />
@@ -87,7 +116,7 @@ const SaleRow = ({ sale, index }: Props) => {
 
                 <button
                   className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition"
-                  // onClick={handleDelete}
+                  onClick={handleDelete}
                 >
                   {isDeleting ? (
                     <>

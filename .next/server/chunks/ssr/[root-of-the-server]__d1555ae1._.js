@@ -363,12 +363,18 @@ const handleApiError = (error)=>{
 "use strict";
 
 __turbopack_context__.s([
+    "CreateBuyback",
+    ()=>CreateBuyback,
     "CreateNewProduct",
     ()=>CreateNewProduct,
     "CreateNewSupplier",
     ()=>CreateNewSupplier,
+    "DeleteBuyBackById",
+    ()=>DeleteBuyBackById,
     "DeleteProductById",
     ()=>DeleteProductById,
+    "DeleteSaleById",
+    ()=>DeleteSaleById,
     "DeleteSupplier",
     ()=>DeleteSupplier,
     "GetAllBuyBacks",
@@ -649,6 +655,19 @@ const GetSaleById = async (token, id)=>{
         throw error;
     }
 };
+const DeleteSaleById = async (token, id)=>{
+    try {
+        const res = await api.delete(`/sale/delete/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
 const GetAllBuyBacks = async (token, page)=>{
     try {
         const res = await api.get(`/buy-back?page=${page}`, {
@@ -665,6 +684,32 @@ const GetAllBuyBacks = async (token, page)=>{
 const GetBuyBackById = async (token, id)=>{
     try {
         const res = await api.get(`/buy-back/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const DeleteBuyBackById = async (token, id)=>{
+    try {
+        const res = await api.delete(`/buy-back/delete/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const CreateBuyback = async (token, data)=>{
+    try {
+        const res = await api.post(`/buy-back/create`, data, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

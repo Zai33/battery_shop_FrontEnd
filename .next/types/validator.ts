@@ -36,6 +36,42 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
 }
 
 
+// Validate ../../app/dashboard/buyback/create/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/dashboard/buyback/create">> = Specific
+  const handler = {} as typeof import("../../app/dashboard/buyback/create/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/dashboard/buyback/detail/[id]/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/dashboard/buyback/detail/[id]">> = Specific
+  const handler = {} as typeof import("../../app/dashboard/buyback/detail/[id]/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/dashboard/buyback/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/dashboard/buyback">> = Specific
+  const handler = {} as typeof import("../../app/dashboard/buyback/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/dashboard/buyback/update/[id]/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/dashboard/buyback/update/[id]">> = Specific
+  const handler = {} as typeof import("../../app/dashboard/buyback/update/[id]/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/dashboard/customer/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/dashboard/customer">> = Specific
