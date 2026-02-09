@@ -1,7 +1,12 @@
 import React from "react";
+import SecondBatteryInfo from "./components/SecondBatteryInfo";
 
 const SecondProduct = () => {
-  return <div>Second product page.</div>;
+  return (
+    <div className="w-full h-full">
+      <SecondBatteryInfo />
+    </div>
+  );
 };
 
 export default SecondProduct;

@@ -8,6 +8,17 @@ export const batteryTypes = [
   "Other",
 ];
 
+export const batterySizes = [
+  "N35",
+  "N45",
+  "N50",
+  "N70",
+  "N100",
+  "N120",
+  "N150",
+  "N200",
+];
+
 export interface LoginResult {
   _id: string;
   name: string;
@@ -169,4 +180,9 @@ export interface BuyBack {
 export interface BuyBackForm {
   customerInfo: { name: string; phone: string };
   buybackData: RebuyBattery[];
+}
+
+export interface SecondBatteryInfoItem {
+  _id: string;
+  quantity: number;
 }

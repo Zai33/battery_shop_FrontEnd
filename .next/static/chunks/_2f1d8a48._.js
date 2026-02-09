@@ -317,6 +317,8 @@ __turbopack_context__.s([
     ()=>GetProductById,
     "GetSaleById",
     ()=>GetSaleById,
+    "GetSecondBatteryInfo",
+    ()=>GetSecondBatteryInfo,
     "LoginUser",
     ()=>LoginUser,
     "ResendOtp",
@@ -327,6 +329,8 @@ __turbopack_context__.s([
     ()=>SearchProductByName,
     "SignUpUser",
     ()=>SignUpUser,
+    "UpdateBuyBackById",
+    ()=>UpdateBuyBackById,
     "UpdateProductById",
     ()=>UpdateProductById,
     "UpdateSupplier",
@@ -665,6 +669,34 @@ const CreateBuyback = async (token, data)=>{
     }
 };
 _c22 = CreateBuyback;
+const UpdateBuyBackById = async (token, id, data)=>{
+    try {
+        const res = await api.patch("/buy-back/update/".concat(id), data, {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c23 = UpdateBuyBackById;
+const GetSecondBatteryInfo = async (token)=>{
+    try {
+        const res = await api.get("/second-battery/info", {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c24 = GetSecondBatteryInfo;
 const SearchProductByName = async (token, keyword)=>{
     try {
         const res = await api.get("/product/search?key=".concat(keyword), {
@@ -678,8 +710,8 @@ const SearchProductByName = async (token, keyword)=>{
         throw error;
     }
 };
-_c23 = SearchProductByName;
-var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12, _c13, _c14, _c15, _c16, _c17, _c18, _c19, _c20, _c21, _c22, _c23;
+_c25 = SearchProductByName;
+var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12, _c13, _c14, _c15, _c16, _c17, _c18, _c19, _c20, _c21, _c22, _c23, _c24, _c25;
 __turbopack_context__.k.register(_c, "LoginUser");
 __turbopack_context__.k.register(_c1, "SignUpUser");
 __turbopack_context__.k.register(_c2, "VerifyOtp");
@@ -703,7 +735,9 @@ __turbopack_context__.k.register(_c19, "GetAllBuyBacks");
 __turbopack_context__.k.register(_c20, "GetBuyBackById");
 __turbopack_context__.k.register(_c21, "DeleteBuyBackById");
 __turbopack_context__.k.register(_c22, "CreateBuyback");
-__turbopack_context__.k.register(_c23, "SearchProductByName");
+__turbopack_context__.k.register(_c23, "UpdateBuyBackById");
+__turbopack_context__.k.register(_c24, "GetSecondBatteryInfo");
+__turbopack_context__.k.register(_c25, "SearchProductByName");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }

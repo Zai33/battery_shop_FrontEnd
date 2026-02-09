@@ -125,6 +125,8 @@ __turbopack_context__.s([
     ()=>GetProductById,
     "GetSaleById",
     ()=>GetSaleById,
+    "GetSecondBatteryInfo",
+    ()=>GetSecondBatteryInfo,
     "LoginUser",
     ()=>LoginUser,
     "ResendOtp",
@@ -135,6 +137,8 @@ __turbopack_context__.s([
     ()=>SearchProductByName,
     "SignUpUser",
     ()=>SignUpUser,
+    "UpdateBuyBackById",
+    ()=>UpdateBuyBackById,
     "UpdateProductById",
     ()=>UpdateProductById,
     "UpdateSupplier",
@@ -473,6 +477,34 @@ const CreateBuyback = async (token, data)=>{
     }
 };
 _c22 = CreateBuyback;
+const UpdateBuyBackById = async (token, id, data)=>{
+    try {
+        const res = await api.patch("/buy-back/update/".concat(id), data, {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c23 = UpdateBuyBackById;
+const GetSecondBatteryInfo = async (token)=>{
+    try {
+        const res = await api.get("/second-battery/info", {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c24 = GetSecondBatteryInfo;
 const SearchProductByName = async (token, keyword)=>{
     try {
         const res = await api.get("/product/search?key=".concat(keyword), {
@@ -486,8 +518,8 @@ const SearchProductByName = async (token, keyword)=>{
         throw error;
     }
 };
-_c23 = SearchProductByName;
-var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12, _c13, _c14, _c15, _c16, _c17, _c18, _c19, _c20, _c21, _c22, _c23;
+_c25 = SearchProductByName;
+var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12, _c13, _c14, _c15, _c16, _c17, _c18, _c19, _c20, _c21, _c22, _c23, _c24, _c25;
 __turbopack_context__.k.register(_c, "LoginUser");
 __turbopack_context__.k.register(_c1, "SignUpUser");
 __turbopack_context__.k.register(_c2, "VerifyOtp");
@@ -511,7 +543,9 @@ __turbopack_context__.k.register(_c19, "GetAllBuyBacks");
 __turbopack_context__.k.register(_c20, "GetBuyBackById");
 __turbopack_context__.k.register(_c21, "DeleteBuyBackById");
 __turbopack_context__.k.register(_c22, "CreateBuyback");
-__turbopack_context__.k.register(_c23, "SearchProductByName");
+__turbopack_context__.k.register(_c23, "UpdateBuyBackById");
+__turbopack_context__.k.register(_c24, "GetSecondBatteryInfo");
+__turbopack_context__.k.register(_c25, "SearchProductByName");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -527,6 +561,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$breadcrumb$2f$BreadCrumb$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/breadcrumb/BreadCrumb.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/libs/api.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$recycle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Recycle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/recycle.js [app-client] (ecmascript) <export default as Recycle>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/x.js [app-client] (ecmascript) <export default as X>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-hot-toast/dist/index.mjs [app-client] (ecmascript)");
@@ -544,7 +579,9 @@ const EditBuyBack = ()=>{
     const { id } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useParams"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const [formData, setFormData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])();
+    const [batteries, setBatteries] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [isUpdating, setIsUpdating] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const token = localStorage.getItem("token") || "";
     const fetchBuybackById = async ()=>{
         setIsLoading(true);
@@ -553,6 +590,7 @@ const EditBuyBack = ()=>{
             // const buyback = res.result;
             if (res.con) {
                 setFormData(res.result);
+                setBatteries(res.result.batteries);
             } else {
                 __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].error(res.message);
             }
@@ -564,6 +602,53 @@ const EditBuyBack = ()=>{
             setIsLoading(false);
         }
     };
+    //update quantity
+    const updateQuantity = (index, delta)=>{
+        setBatteries((prev)=>prev.map((item, i)=>{
+                if (i !== index) return item;
+                const quantity = Math.max(1, item.quantity + delta);
+                const reusableQty = Math.min(item.reusableQty, quantity);
+                return {
+                    ...item,
+                    quantity,
+                    reusableQty,
+                    total: item.buyPrice * quantity
+                };
+            }));
+    };
+    //update resuable qty
+    const updateReusableQty = (index, delta)=>{
+        setBatteries((prev)=>prev.map((item, i)=>{
+                if (i !== index) return item;
+                const reusableQty = Math.min(item.quantity, Math.max(0, item.reusableQty + delta));
+                return {
+                    ...item,
+                    reusableQty
+                };
+            }));
+    };
+    // update buyback handler
+    const handleUpdateBuyBack = async ()=>{
+        try {
+            setIsUpdating(true);
+            console.log("data ", batteries);
+            const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["UpdateBuyBackById"])(token, id, batteries);
+            if (res.con) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].success(res.message);
+                setTimeout(()=>{
+                    router.push("/dashboard/buyback");
+                }, 1000);
+            } else {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].error(res.message);
+            }
+            setIsUpdating(false);
+        } catch (error) {
+            const message = error instanceof Error ? error.message : "Failed to update buyback. Please try again.";
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].error(message);
+        } finally{
+            setIsUpdating(false);
+        }
+    };
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "EditBuyBack.useEffect": ()=>{
             if (!id) return;
@@ -572,7 +657,6 @@ const EditBuyBack = ()=>{
     }["EditBuyBack.useEffect"], [
         id
     ]);
-    console.log("data ", formData);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "w-full bg-gray-50 p-4 md:p-6",
         children: [
@@ -588,19 +672,19 @@ const EditBuyBack = ()=>{
                                     className: "w-8 h-8 text-blue-600"
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
-                                    lineNumber: 52,
+                                    lineNumber: 118,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 "Update Buy-Back"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
-                            lineNumber: 51,
+                            lineNumber: 117,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
-                        lineNumber: 50,
+                        lineNumber: 116,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$breadcrumb$2f$BreadCrumb$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -619,51 +703,284 @@ const EditBuyBack = ()=>{
                         ]
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
-                        lineNumber: 56,
+                        lineNumber: 122,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
-                lineNumber: 49,
+                lineNumber: 115,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
-            isLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex flex-col items-center justify-center h-[300px] gap-4",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"
-                    }, void 0, false, {
-                        fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
-                        lineNumber: 68,
-                        columnNumber: 11
-                    }, ("TURBOPACK compile-time value", void 0)),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-gray-600 font-medium",
-                        children: "Loading buyBack data..."
-                    }, void 0, false, {
-                        fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
-                        lineNumber: 69,
-                        columnNumber: 11
-                    }, ("TURBOPACK compile-time value", void 0))
-                ]
-            }, void 0, true, {
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "w-full max-w-5xl h-fit bg-gray-100 rounded-lg shadow-lg p-6 border-gray-200 border-2 border-dashed",
+                children: isLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex flex-col items-center justify-center h-[300px] gap-4",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"
+                        }, void 0, false, {
+                            fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                            lineNumber: 135,
+                            columnNumber: 13
+                        }, ("TURBOPACK compile-time value", void 0)),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-gray-600 font-medium",
+                            children: "Loading buyBack data..."
+                        }, void 0, false, {
+                            fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                            lineNumber: 136,
+                            columnNumber: 13
+                        }, ("TURBOPACK compile-time value", void 0))
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                    lineNumber: 134,
+                    columnNumber: 11
+                }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex flex-col gap-3 mt-6",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                            className: "text-lg text-start",
+                            children: "BuyBack Data"
+                        }, void 0, false, {
+                            fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                            lineNumber: 140,
+                            columnNumber: 13
+                        }, ("TURBOPACK compile-time value", void 0)),
+                        batteries.map((b, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex justify-between items-center bg-white rounded-xl shadow-sm p-4 mb-3 border-2 border-dashed border-gray-300",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-lg font-semibold text-gray-800",
+                                                children: b.batterySize
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                                lineNumber: 147,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0)),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-sm text-gray-500",
+                                                children: [
+                                                    "Buy Price: ",
+                                                    b.buyPrice.toLocaleString(),
+                                                    " Ks"
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                                lineNumber: 150,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0))
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                        lineNumber: 146,
+                                        columnNumber: 17
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex flex-col items-center",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-xs text-gray-500 mb-1",
+                                                children: "Quantity"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                                lineNumber: 156,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0)),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center gap-2",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                        onClick: ()=>updateQuantity(index, -1),
+                                                        className: "w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300",
+                                                        children: "−"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                                        lineNumber: 158,
+                                                        columnNumber: 21
+                                                    }, ("TURBOPACK compile-time value", void 0)),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "w-8 text-center font-medium tabular-nums",
+                                                        children: b.quantity
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                                        lineNumber: 164,
+                                                        columnNumber: 21
+                                                    }, ("TURBOPACK compile-time value", void 0)),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                        onClick: ()=>updateQuantity(index, 1),
+                                                        className: "w-8 h-8 rounded-full bg-blue-600 text-white hover:bg-blue-700",
+                                                        children: "+"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                                        lineNumber: 167,
+                                                        columnNumber: 21
+                                                    }, ("TURBOPACK compile-time value", void 0))
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                                lineNumber: 157,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0))
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                        lineNumber: 155,
+                                        columnNumber: 17
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex flex-col items-center",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-xs text-gray-500 mb-1",
+                                                children: "Reusable"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                                lineNumber: 177,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0)),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center gap-2",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                        onClick: ()=>updateReusableQty(index, -1),
+                                                        className: "w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300",
+                                                        children: "−"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                                        lineNumber: 179,
+                                                        columnNumber: 21
+                                                    }, ("TURBOPACK compile-time value", void 0)),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "w-8 text-center font-medium tabular-nums",
+                                                        children: b.reusableQty
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                                        lineNumber: 185,
+                                                        columnNumber: 21
+                                                    }, ("TURBOPACK compile-time value", void 0)),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                        onClick: ()=>updateReusableQty(index, 1),
+                                                        className: "w-8 h-8 rounded-full bg-green-600 text-white hover:bg-green-700",
+                                                        children: "+"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                                        lineNumber: 188,
+                                                        columnNumber: 21
+                                                    }, ("TURBOPACK compile-time value", void 0))
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                                lineNumber: 178,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0))
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                        lineNumber: 176,
+                                        columnNumber: 17
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-right w-28 shrink-0 font-mono tabular-nums",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-xs text-gray-500",
+                                                children: "Total"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                                lineNumber: 198,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0)),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-lg font-bold text-gray-800",
+                                                children: [
+                                                    b.total.toLocaleString(),
+                                                    " Ks"
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                                lineNumber: 199,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0))
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                        lineNumber: 197,
+                                        columnNumber: 17
+                                    }, ("TURBOPACK compile-time value", void 0))
+                                ]
+                            }, index, true, {
+                                fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                lineNumber: 142,
+                                columnNumber: 15
+                            }, ("TURBOPACK compile-time value", void 0))),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "border-b border-gray-500"
+                        }, void 0, false, {
+                            fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                            lineNumber: 205,
+                            columnNumber: 13
+                        }, ("TURBOPACK compile-time value", void 0)),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex justify-end items-center gap-3 mt-6",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    type: "button",
+                                    onClick: ()=>window.history.back(),
+                                    className: "flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
+                                            className: "w-4 h-4"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                            lineNumber: 215,
+                                            columnNumber: 17
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        "Cancel"
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                    lineNumber: 207,
+                                    columnNumber: 15
+                                }, ("TURBOPACK compile-time value", void 0)),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: handleUpdateBuyBack,
+                                    disabled: isUpdating,
+                                    className: "px-6 py-2.5 rounded-lg text-sm font-semibold text-white\n      focus:outline-none focus:ring-2 focus:ring-blue-300 transition\n      ".concat(isUpdating ? "bg-blue-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"),
+                                    children: isUpdating ? "Updating..." : "Update BuyBack"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                                    lineNumber: 219,
+                                    columnNumber: 15
+                                }, ("TURBOPACK compile-time value", void 0))
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                            lineNumber: 206,
+                            columnNumber: 13
+                        }, ("TURBOPACK compile-time value", void 0))
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
+                    lineNumber: 139,
+                    columnNumber: 11
+                }, ("TURBOPACK compile-time value", void 0))
+            }, void 0, false, {
                 fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
-                lineNumber: 67,
-                columnNumber: 9
-            }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {}, void 0, false, {
-                fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
-                lineNumber: 72,
-                columnNumber: 9
+                lineNumber: 132,
+                columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/app/dashboard/buyback/components/EditBuyBack.tsx",
-        lineNumber: 48,
+        lineNumber: 114,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
-_s(EditBuyBack, "dFXa/0BJph8WPqt8zKFCyp0yOL0=", false, function() {
+_s(EditBuyBack, "QSA04aLNjJB/h5xmHe7iyClKlp8=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useParams"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]

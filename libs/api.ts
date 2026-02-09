@@ -4,6 +4,7 @@ import {
   CreateProductType,
   CreateSupplierType,
   ProductResponse,
+  RebuyBattery,
   SaleForm,
   SendOtpResponse,
   Supplier,
@@ -379,6 +380,40 @@ export const DeleteBuyBackById = async (token: string, id: string) => {
 export const CreateBuyback = async (token: string, data: BuyBackForm) => {
   try {
     const res = await api.post(`/buy-back/create`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+//update buyback by id
+export const UpdateBuyBackById = async (
+  token: string,
+  id: string,
+  data: RebuyBattery[]
+) => {
+  try {
+    const res = await api.patch(`/buy-back/update/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+//get second battery info
+export const GetSecondBatteryInfo = async (token: string) => {
+  try {
+    const res = await api.get(`/second-battery/info`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

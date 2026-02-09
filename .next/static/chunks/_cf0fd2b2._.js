@@ -93,24 +93,38 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 "use strict";
 
 __turbopack_context__.s([
+    "CreateBuyback",
+    ()=>CreateBuyback,
     "CreateNewProduct",
     ()=>CreateNewProduct,
     "CreateNewSupplier",
     ()=>CreateNewSupplier,
+    "DeleteBuyBackById",
+    ()=>DeleteBuyBackById,
     "DeleteProductById",
     ()=>DeleteProductById,
+    "DeleteSaleById",
+    ()=>DeleteSaleById,
     "DeleteSupplier",
     ()=>DeleteSupplier,
+    "GetAllBuyBacks",
+    ()=>GetAllBuyBacks,
     "GetAllCategories",
     ()=>GetAllCategories,
     "GetAllProducts",
     ()=>GetAllProducts,
+    "GetAllSale",
+    ()=>GetAllSale,
     "GetAllSales",
     ()=>GetAllSales,
     "GetAllSuppliers",
     ()=>GetAllSuppliers,
+    "GetBuyBackById",
+    ()=>GetBuyBackById,
     "GetProductById",
     ()=>GetProductById,
+    "GetSaleById",
+    ()=>GetSaleById,
     "LoginUser",
     ()=>LoginUser,
     "ResendOtp",
@@ -347,9 +361,9 @@ const GetAllSales = async (token, page)=>{
     }
 };
 _c14 = GetAllSales;
-const SaleCreate = async (token, data)=>{
+const SaleCreate = async (token, saleData)=>{
     try {
-        const res = await api.post("/sale/create", data, {
+        const res = await api.post("/sale/create", saleData, {
             headers: {
                 Authorization: "Bearer ".concat(token)
             }
@@ -361,6 +375,104 @@ const SaleCreate = async (token, data)=>{
     }
 };
 _c15 = SaleCreate;
+const GetAllSale = async (token, page)=>{
+    try {
+        const res = await api.get("/sale?page=".concat(page), {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c16 = GetAllSale;
+const GetSaleById = async (token, id)=>{
+    try {
+        const res = await api.get("/sale/".concat(id), {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c17 = GetSaleById;
+const DeleteSaleById = async (token, id)=>{
+    try {
+        const res = await api.delete("/sale/delete/".concat(id), {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c18 = DeleteSaleById;
+const GetAllBuyBacks = async (token, page)=>{
+    try {
+        const res = await api.get("/buy-back?page=".concat(page), {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c19 = GetAllBuyBacks;
+const GetBuyBackById = async (token, id)=>{
+    try {
+        const res = await api.get("/buy-back/".concat(id), {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c20 = GetBuyBackById;
+const DeleteBuyBackById = async (token, id)=>{
+    try {
+        const res = await api.delete("/buy-back/delete/".concat(id), {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c21 = DeleteBuyBackById;
+const CreateBuyback = async (token, data)=>{
+    try {
+        const res = await api.post("/buy-back/create", data, {
+            headers: {
+                Authorization: "Bearer ".concat(token)
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c22 = CreateBuyback;
 const SearchProductByName = async (token, keyword)=>{
     try {
         const res = await api.get("/product/search?key=".concat(keyword), {
@@ -374,8 +486,8 @@ const SearchProductByName = async (token, keyword)=>{
         throw error;
     }
 };
-_c16 = SearchProductByName;
-var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12, _c13, _c14, _c15, _c16;
+_c23 = SearchProductByName;
+var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12, _c13, _c14, _c15, _c16, _c17, _c18, _c19, _c20, _c21, _c22, _c23;
 __turbopack_context__.k.register(_c, "LoginUser");
 __turbopack_context__.k.register(_c1, "SignUpUser");
 __turbopack_context__.k.register(_c2, "VerifyOtp");
@@ -392,7 +504,14 @@ __turbopack_context__.k.register(_c12, "UpdateProductById");
 __turbopack_context__.k.register(_c13, "DeleteProductById");
 __turbopack_context__.k.register(_c14, "GetAllSales");
 __turbopack_context__.k.register(_c15, "SaleCreate");
-__turbopack_context__.k.register(_c16, "SearchProductByName");
+__turbopack_context__.k.register(_c16, "GetAllSale");
+__turbopack_context__.k.register(_c17, "GetSaleById");
+__turbopack_context__.k.register(_c18, "DeleteSaleById");
+__turbopack_context__.k.register(_c19, "GetAllBuyBacks");
+__turbopack_context__.k.register(_c20, "GetBuyBackById");
+__turbopack_context__.k.register(_c21, "DeleteBuyBackById");
+__turbopack_context__.k.register(_c22, "CreateBuyback");
+__turbopack_context__.k.register(_c23, "SearchProductByName");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
