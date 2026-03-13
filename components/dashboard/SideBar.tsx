@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import {
   LayoutDashboard,
@@ -11,6 +11,9 @@ import {
   Truck,
   Users2,
 } from "lucide-react";
+import Image from "next/image";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 const navItems = [
   { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
@@ -24,6 +27,8 @@ const navItems = [
 
 const SideBar = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const user = useSelector((state: RootState) => state.user);
 
   return (
     <aside className="w-64 h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-gray-100 flex flex-col shadow-xl">
@@ -62,6 +67,52 @@ const SideBar = () => {
           );
         })}
       </nav>
+      {/* user profile */}
+      <div className="p-2">
+        {(() => {
+          const isProfileActive = pathname === "/dashboard/profile";
+          const avatorImag = user?.image || "/images/default.webp";
+
+          return (
+            <div
+              className={`flex items-center gap-4 p-3 cursor-pointer rounded-2xl transition-all duration-200 ${
+                isProfileActive
+                  ? "bg-white text-blue-700 shadow-md"
+                  : "hover:bg-blue-500/20"
+              }`}
+              onClick={() => router.push("/dashboard/profile")}
+            >
+              <div className="relative w-10 h-10 rounded-full overflow-hidden bg-gray-200">
+                <Image
+                  src={avatorImag}
+                  alt="User avatar"
+                  fill
+                  className="object-cover"
+                  sizes="40px"
+                  priority
+                />
+              </div>
+
+              <div className="flex flex-col items-start gap-1 text-sm">
+                <span
+                  className={`font-medium ${
+                    isProfileActive ? "text-blue-700" : "text-white"
+                  }`}
+                >
+                  {user.name || "User Name"}
+                </span>
+                <span
+                  className={`text-xs ${
+                    isProfileActive ? "text-blue-600" : "text-blue-200"
+                  }`}
+                >
+                  {user.role || "User"}
+                </span>
+              </div>
+            </div>
+          );
+        })()}
+      </div>
 
       <div className="p-4 text-center text-sm text-blue-200 border-t border-blue-500">
         v1.0.0

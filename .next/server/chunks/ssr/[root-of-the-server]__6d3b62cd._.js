@@ -192,8 +192,12 @@ __turbopack_context__.s([
     ()=>GetProductById,
     "GetSaleById",
     ()=>GetSaleById,
+    "GetSecondBatteryInfo",
+    ()=>GetSecondBatteryInfo,
     "LoginUser",
     ()=>LoginUser,
+    "LogoutUser",
+    ()=>LogoutUser,
     "ResendOtp",
     ()=>ResendOtp,
     "SaleCreate",
@@ -272,6 +276,7 @@ const ResendOtp = async (userId)=>{
         throw error;
     }
 };
+const LogoutUser = async;
 const GetAllCategories = async (token)=>{
     try {
         const res = await api.get("/category", {
@@ -522,6 +527,19 @@ const CreateBuyback = async (token, data)=>{
 const UpdateBuyBackById = async (token, id, data)=>{
     try {
         const res = await api.patch(`/buy-back/update/${id}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+const GetSecondBatteryInfo = async (token)=>{
+    try {
+        const res = await api.get(`/second-battery/info`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

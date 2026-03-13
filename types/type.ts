@@ -23,6 +23,7 @@ export interface LoginResult {
   _id: string;
   name: string;
   email: string;
+  image: string;
   phone_number?: string;
   role: string;
   token: string;

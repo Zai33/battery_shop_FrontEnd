@@ -5,6 +5,7 @@ const initialState: LoginResult = {
   _id: "",
   name: "",
   email: "",
+  image: "",
   phone_number: "",
   role: "",
   token: "",

@@ -24,7 +24,7 @@ const api = axios.create({
 // login user
 export const LoginUser = async (
   email: string,
-  password: string
+  password: string,
 ): Promise<AuthResponse> => {
   try {
     const res = await api.post<AuthResponse>("/auth/login", {
@@ -43,7 +43,7 @@ export const SignUpUser = async (
   email: string,
   name: string,
   password: string,
-  confirmPassword: string
+  confirmPassword: string,
 ): Promise<SendOtpResponse> => {
   try {
     const res = await api.post("/auth/register", {
@@ -62,7 +62,7 @@ export const SignUpUser = async (
 //verify otp
 export const VerifyOtp = async (
   userId: string,
-  otp: string
+  otp: string,
 ): Promise<AuthResponse> => {
   try {
     const res = await api.post("/auth/register/verify-otp", {
@@ -82,6 +82,17 @@ export const ResendOtp = async (userId: string): Promise<AuthResponse> => {
     const res = await api.post("/auth/register/resend-otp", {
       userId,
     });
+    return res.data;
+  } catch (error: unknown) {
+    handleApiError(error);
+    throw error;
+  }
+};
+
+// logout user
+export const LogoutUser = async () => {
+  try {
+    const res = await api.post("/auth/logout");
     return res.data;
   } catch (error: unknown) {
     handleApiError(error);
@@ -122,7 +133,7 @@ export const GetAllSuppliers = async (token: string) => {
 //create supplier
 export const CreateNewSupplier = async (
   data: CreateSupplierType,
-  token: string
+  token: string,
 ) => {
   try {
     const res = await api.post("/supplier/create", data, {
@@ -156,7 +167,7 @@ export const DeleteSupplier = async (id: string, token: string) => {
 export const UpdateSupplier = async (
   id: string,
   data: Supplier,
-  token: string
+  token: string,
 ) => {
   try {
     const res = await api.put(`/supplier/update/${id}`, data, {
@@ -174,7 +185,7 @@ export const UpdateSupplier = async (
 // get all products
 export const GetAllProducts = async (
   token: string,
-  page: number
+  page: number,
 ): Promise<ProductResponse> => {
   try {
     const res = await api.get(`/product?page=${page}`, {
@@ -192,7 +203,7 @@ export const GetAllProducts = async (
 //create new product
 export const CreateNewProduct = async (
   data: CreateProductType,
-  token: string
+  token: string,
 ) => {
   try {
     const res = await api.post("/product/create", data, {
@@ -226,7 +237,7 @@ export const GetProductById = async (id: string, token: string) => {
 export const UpdateProductById = async (
   id: string,
   data: CreateProductType,
-  token: string
+  token: string,
 ) => {
   try {
     const res = await api.patch(`/product/update/${id}`, data, {
@@ -395,7 +406,7 @@ export const CreateBuyback = async (token: string, data: BuyBackForm) => {
 export const UpdateBuyBackById = async (
   token: string,
   id: string,
-  data: RebuyBattery[]
+  data: RebuyBattery[],
 ) => {
   try {
     const res = await api.patch(`/buy-back/update/${id}`, data, {

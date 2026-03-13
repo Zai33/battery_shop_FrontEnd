@@ -77,6 +77,7 @@ const initialState = {
     _id: "",
     name: "",
     email: "",
+    image: "",
     phone_number: "",
     role: "",
     token: ""

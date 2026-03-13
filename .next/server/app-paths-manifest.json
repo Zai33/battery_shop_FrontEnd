@@ -1,4 +1,11 @@
 {
+  "/dashboard/buyback/page": "app/dashboard/buyback/page.js",
+  "/dashboard/buyback/update/[id]/page": "app/dashboard/buyback/update/[id]/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/product/page": "app/dashboard/product/page.js",
+  "/dashboard/profile/page": "app/dashboard/profile/page.js",
+  "/dashboard/secondProduct/page": "app/dashboard/secondProduct/page.js",
+  "/dashboard/suppliers/page": "app/dashboard/suppliers/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/login/page": "app/login/page.js",
   "/page": "app/page.js"

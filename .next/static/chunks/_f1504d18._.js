@@ -129,6 +129,8 @@ __turbopack_context__.s([
     ()=>GetSecondBatteryInfo,
     "LoginUser",
     ()=>LoginUser,
+    "LogoutUser",
+    ()=>LogoutUser,
     "ResendOtp",
     ()=>ResendOtp,
     "SaleCreate",
@@ -211,6 +213,16 @@ const ResendOtp = async (userId)=>{
     }
 };
 _c3 = ResendOtp;
+const LogoutUser = async ()=>{
+    try {
+        const res = await api.post("/auth/logout");
+        return res.data;
+    } catch (error) {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$libs$2f$apiErrorHandler$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["handleApiError"])(error);
+        throw error;
+    }
+};
+_c4 = LogoutUser;
 const GetAllCategories = async (token)=>{
     try {
         const res = await api.get("/category", {
@@ -224,7 +236,7 @@ const GetAllCategories = async (token)=>{
         throw error;
     }
 };
-_c4 = GetAllCategories;
+_c5 = GetAllCategories;
 const GetAllSuppliers = async (token)=>{
     try {
         const res = await api.get("/supplier", {
@@ -238,7 +250,7 @@ const GetAllSuppliers = async (token)=>{
         throw error;
     }
 };
-_c5 = GetAllSuppliers;
+_c6 = GetAllSuppliers;
 const CreateNewSupplier = async (data, token)=>{
     try {
         const res = await api.post("/supplier/create", data, {
@@ -252,7 +264,7 @@ const CreateNewSupplier = async (data, token)=>{
         throw error;
     }
 };
-_c6 = CreateNewSupplier;
+_c7 = CreateNewSupplier;
 const DeleteSupplier = async (id, token)=>{
     try {
         const res = await api.delete("/supplier/delete/".concat(id), {
@@ -266,7 +278,7 @@ const DeleteSupplier = async (id, token)=>{
         throw error;
     }
 };
-_c7 = DeleteSupplier;
+_c8 = DeleteSupplier;
 const UpdateSupplier = async (id, data, token)=>{
     try {
         const res = await api.put("/supplier/update/".concat(id), data, {
@@ -280,7 +292,7 @@ const UpdateSupplier = async (id, data, token)=>{
         throw error;
     }
 };
-_c8 = UpdateSupplier;
+_c9 = UpdateSupplier;
 const GetAllProducts = async (token, page)=>{
     try {
         const res = await api.get("/product?page=".concat(page), {
@@ -294,7 +306,7 @@ const GetAllProducts = async (token, page)=>{
         throw error;
     }
 };
-_c9 = GetAllProducts;
+_c10 = GetAllProducts;
 const CreateNewProduct = async (data, token)=>{
     try {
         const res = await api.post("/product/create", data, {
@@ -308,7 +320,7 @@ const CreateNewProduct = async (data, token)=>{
         throw error;
     }
 };
-_c10 = CreateNewProduct;
+_c11 = CreateNewProduct;
 const GetProductById = async (id, token)=>{
     try {
         const res = await api.get("/product/".concat(id), {
@@ -322,7 +334,7 @@ const GetProductById = async (id, token)=>{
         throw error;
     }
 };
-_c11 = GetProductById;
+_c12 = GetProductById;
 const UpdateProductById = async (id, data, token)=>{
     try {
         const res = await api.patch("/product/update/".concat(id), data, {
@@ -336,7 +348,7 @@ const UpdateProductById = async (id, data, token)=>{
         throw error;
     }
 };
-_c12 = UpdateProductById;
+_c13 = UpdateProductById;
 const DeleteProductById = async (id, token)=>{
     try {
         const res = await api.delete("/product/delete/".concat(id), {
@@ -350,7 +362,7 @@ const DeleteProductById = async (id, token)=>{
         throw error;
     }
 };
-_c13 = DeleteProductById;
+_c14 = DeleteProductById;
 const GetAllSales = async (token, page)=>{
     try {
         const res = await api.get("/sale?page=".concat(page, "&limit=10"), {
@@ -364,7 +376,7 @@ const GetAllSales = async (token, page)=>{
         throw error;
     }
 };
-_c14 = GetAllSales;
+_c15 = GetAllSales;
 const SaleCreate = async (token, saleData)=>{
     try {
         const res = await api.post("/sale/create", saleData, {
@@ -378,7 +390,7 @@ const SaleCreate = async (token, saleData)=>{
         throw error;
     }
 };
-_c15 = SaleCreate;
+_c16 = SaleCreate;
 const GetAllSale = async (token, page)=>{
     try {
         const res = await api.get("/sale?page=".concat(page), {
@@ -392,7 +404,7 @@ const GetAllSale = async (token, page)=>{
         throw error;
     }
 };
-_c16 = GetAllSale;
+_c17 = GetAllSale;
 const GetSaleById = async (token, id)=>{
     try {
         const res = await api.get("/sale/".concat(id), {
@@ -406,7 +418,7 @@ const GetSaleById = async (token, id)=>{
         throw error;
     }
 };
-_c17 = GetSaleById;
+_c18 = GetSaleById;
 const DeleteSaleById = async (token, id)=>{
     try {
         const res = await api.delete("/sale/delete/".concat(id), {
@@ -420,7 +432,7 @@ const DeleteSaleById = async (token, id)=>{
         throw error;
     }
 };
-_c18 = DeleteSaleById;
+_c19 = DeleteSaleById;
 const GetAllBuyBacks = async (token, page)=>{
     try {
         const res = await api.get("/buy-back?page=".concat(page), {
@@ -434,7 +446,7 @@ const GetAllBuyBacks = async (token, page)=>{
         throw error;
     }
 };
-_c19 = GetAllBuyBacks;
+_c20 = GetAllBuyBacks;
 const GetBuyBackById = async (token, id)=>{
     try {
         const res = await api.get("/buy-back/".concat(id), {
@@ -448,7 +460,7 @@ const GetBuyBackById = async (token, id)=>{
         throw error;
     }
 };
-_c20 = GetBuyBackById;
+_c21 = GetBuyBackById;
 const DeleteBuyBackById = async (token, id)=>{
     try {
         const res = await api.delete("/buy-back/delete/".concat(id), {
@@ -462,7 +474,7 @@ const DeleteBuyBackById = async (token, id)=>{
         throw error;
     }
 };
-_c21 = DeleteBuyBackById;
+_c22 = DeleteBuyBackById;
 const CreateBuyback = async (token, data)=>{
     try {
         const res = await api.post("/buy-back/create", data, {
@@ -476,7 +488,7 @@ const CreateBuyback = async (token, data)=>{
         throw error;
     }
 };
-_c22 = CreateBuyback;
+_c23 = CreateBuyback;
 const UpdateBuyBackById = async (token, id, data)=>{
     try {
         const res = await api.patch("/buy-back/update/".concat(id), data, {
@@ -490,7 +502,7 @@ const UpdateBuyBackById = async (token, id, data)=>{
         throw error;
     }
 };
-_c23 = UpdateBuyBackById;
+_c24 = UpdateBuyBackById;
 const GetSecondBatteryInfo = async (token)=>{
     try {
         const res = await api.get("/second-battery/info", {
@@ -504,7 +516,7 @@ const GetSecondBatteryInfo = async (token)=>{
         throw error;
     }
 };
-_c24 = GetSecondBatteryInfo;
+_c25 = GetSecondBatteryInfo;
 const SearchProductByName = async (token, keyword)=>{
     try {
         const res = await api.get("/product/search?key=".concat(keyword), {
@@ -518,34 +530,35 @@ const SearchProductByName = async (token, keyword)=>{
         throw error;
     }
 };
-_c25 = SearchProductByName;
-var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12, _c13, _c14, _c15, _c16, _c17, _c18, _c19, _c20, _c21, _c22, _c23, _c24, _c25;
+_c26 = SearchProductByName;
+var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12, _c13, _c14, _c15, _c16, _c17, _c18, _c19, _c20, _c21, _c22, _c23, _c24, _c25, _c26;
 __turbopack_context__.k.register(_c, "LoginUser");
 __turbopack_context__.k.register(_c1, "SignUpUser");
 __turbopack_context__.k.register(_c2, "VerifyOtp");
 __turbopack_context__.k.register(_c3, "ResendOtp");
-__turbopack_context__.k.register(_c4, "GetAllCategories");
-__turbopack_context__.k.register(_c5, "GetAllSuppliers");
-__turbopack_context__.k.register(_c6, "CreateNewSupplier");
-__turbopack_context__.k.register(_c7, "DeleteSupplier");
-__turbopack_context__.k.register(_c8, "UpdateSupplier");
-__turbopack_context__.k.register(_c9, "GetAllProducts");
-__turbopack_context__.k.register(_c10, "CreateNewProduct");
-__turbopack_context__.k.register(_c11, "GetProductById");
-__turbopack_context__.k.register(_c12, "UpdateProductById");
-__turbopack_context__.k.register(_c13, "DeleteProductById");
-__turbopack_context__.k.register(_c14, "GetAllSales");
-__turbopack_context__.k.register(_c15, "SaleCreate");
-__turbopack_context__.k.register(_c16, "GetAllSale");
-__turbopack_context__.k.register(_c17, "GetSaleById");
-__turbopack_context__.k.register(_c18, "DeleteSaleById");
-__turbopack_context__.k.register(_c19, "GetAllBuyBacks");
-__turbopack_context__.k.register(_c20, "GetBuyBackById");
-__turbopack_context__.k.register(_c21, "DeleteBuyBackById");
-__turbopack_context__.k.register(_c22, "CreateBuyback");
-__turbopack_context__.k.register(_c23, "UpdateBuyBackById");
-__turbopack_context__.k.register(_c24, "GetSecondBatteryInfo");
-__turbopack_context__.k.register(_c25, "SearchProductByName");
+__turbopack_context__.k.register(_c4, "LogoutUser");
+__turbopack_context__.k.register(_c5, "GetAllCategories");
+__turbopack_context__.k.register(_c6, "GetAllSuppliers");
+__turbopack_context__.k.register(_c7, "CreateNewSupplier");
+__turbopack_context__.k.register(_c8, "DeleteSupplier");
+__turbopack_context__.k.register(_c9, "UpdateSupplier");
+__turbopack_context__.k.register(_c10, "GetAllProducts");
+__turbopack_context__.k.register(_c11, "CreateNewProduct");
+__turbopack_context__.k.register(_c12, "GetProductById");
+__turbopack_context__.k.register(_c13, "UpdateProductById");
+__turbopack_context__.k.register(_c14, "DeleteProductById");
+__turbopack_context__.k.register(_c15, "GetAllSales");
+__turbopack_context__.k.register(_c16, "SaleCreate");
+__turbopack_context__.k.register(_c17, "GetAllSale");
+__turbopack_context__.k.register(_c18, "GetSaleById");
+__turbopack_context__.k.register(_c19, "DeleteSaleById");
+__turbopack_context__.k.register(_c20, "GetAllBuyBacks");
+__turbopack_context__.k.register(_c21, "GetBuyBackById");
+__turbopack_context__.k.register(_c22, "DeleteBuyBackById");
+__turbopack_context__.k.register(_c23, "CreateBuyback");
+__turbopack_context__.k.register(_c24, "UpdateBuyBackById");
+__turbopack_context__.k.register(_c25, "GetSecondBatteryInfo");
+__turbopack_context__.k.register(_c26, "SearchProductByName");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }

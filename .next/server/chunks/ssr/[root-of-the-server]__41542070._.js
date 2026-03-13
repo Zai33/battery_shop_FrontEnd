@@ -196,6 +196,8 @@ __turbopack_context__.s([
     ()=>GetSecondBatteryInfo,
     "LoginUser",
     ()=>LoginUser,
+    "LogoutUser",
+    ()=>LogoutUser,
     "ResendOtp",
     ()=>ResendOtp,
     "SaleCreate",
@@ -274,6 +276,7 @@ const ResendOtp = async (userId)=>{
         throw error;
     }
 };
+const LogoutUser = async;
 const GetAllCategories = async (token)=>{
     try {
         const res = await api.get("/category", {
